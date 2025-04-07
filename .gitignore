@@ -1,0 +1,126 @@
+# .NET Core / Backend
+bin/
+obj/
+out/
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+.DS_Store
+Thumbs.db
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.DotSettings
+.idea_modules/
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/usage.statistics.xml
+**/.idea/dictionaries
+**/.idea/shelf
+**/.idea/contentModel.xml
+**/.idea/*.iml
+**/.idea/httpRequests
+
+# NuGet Packages
+*.nupkg
+**/packages/*
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.assets.json
+
+# PostgreSQL local data
+*.sql
+*.backup
+postgres-data/
+
+# Environment / Secrets
+appsettings.Development.json
+appsettings.*.json
+!appsettings.json
+appsettings.local.json
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pfx
+*.key
+connection-strings.json
+secrets.json
+
+# Next.js / Frontend
+/client/node_modules/
+/client/.pnpm-store/
+/client/.next/
+/client/out/
+/client/build/
+/client/dist/
+/client/.turbo
+/client/.vercel
+/client/coverage/
+/client/debug/
+/client/.pnp.*
+/client/.yarn/*
+!/client/.yarn/patches
+!/client/.yarn/plugins
+!/client/.yarn/releases
+!/client/.yarn/sdks
+!/client/.yarn/versions
+
+# Frontend package managers
+pnpm-lock.yaml
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test Results
+TestResults/
+[Tt]est[Rr]esult*/
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio / Visual Studio Code
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Misc
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+desktop.ini
+*.tmp
+*.swp
+*.bak
+*~
+.directory

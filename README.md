@@ -16,7 +16,6 @@ AstroVista follows a clean architecture approach with a GraphQL backend serving 
 AstroVista/
 ├── AstroVista.Api/                  # GraphQL API entry point (ASP.NET Core Minimal API)
 │   ├── Program.cs
-│   ├── Startup.cs
 │   ├── GraphQL/                     # GraphQL schema definitions
 │   │   ├── Queries/
 │   │   ├── Mutations/

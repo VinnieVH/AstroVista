@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <!-- Change from Microsoft.NET.Sdk.Web to Microsoft.NET.Sdk -->
+        <TargetFramework>net7.0</TargetFramework>
+        <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+        <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+        <IsPackable>false</IsPackable>
+        <SpaRoot>.\</SpaRoot>
+        <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+        <RootNamespace>AstroVista.WebClient</RootNamespace>
+        <EnableDefaultContentItems>false</EnableDefaultContentItems>
+        <!-- Add these lines to prevent requiring a Main method -->
+        <OutputType>Library</OutputType>
+        <NoWarn>CS5001</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Exclude generated and workspace directories -->
+        <Content Include="**\*" Exclude="node_modules\**;.git\**;.next\**;.vscode\**;obj\**;bin\**;$(DefaultItemExcludes)">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <Target Name="PublishRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Release' ">
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+    </Target>
+</Project>

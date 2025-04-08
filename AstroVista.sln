@@ -10,13 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Shared", "AstroVista.Shared\AstroVista.Shared.csproj", "{FCAD7598-A9A4-4DEB-BCFF-E169EA2A4995}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F5B343E6-F202-4F45-8A43-E0C83212B65F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.UnitTests", "tests\AstroVista.UnitTests\AstroVista.UnitTests.csproj", "{A45ECB24-5C58-4A83-9C3A-DE0329876EF6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.IntegrationTests", "tests\AstroVista.IntegrationTests\AstroVista.IntegrationTests.csproj", "{F3B4B1D9-DE7C-41FE-A91A-8E47539C6D51}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.GraphQLTests", "tests\AstroVista.GraphQLTests\AstroVista.GraphQLTests.csproj", "{1754BDCD-DB57-4E1E-A2C9-82A96A2F7FFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.WebClient", "AstroVista.WebClient\AstroVista.WebClient.csproj", "{FD369BDF-5373-411E-B75A-350F90949078}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +46,10 @@ Global
 		{1754BDCD-DB57-4E1E-A2C9-82A96A2F7FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1754BDCD-DB57-4E1E-A2C9-82A96A2F7FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1754BDCD-DB57-4E1E-A2C9-82A96A2F7FFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD369BDF-5373-411E-B75A-350F90949078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD369BDF-5373-411E-B75A-350F90949078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD369BDF-5373-411E-B75A-350F90949078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD369BDF-5373-411E-B75A-350F90949078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,214 @@
+@import "variables";
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, $deep-space, $cosmic-blue);
+  color: $cosmic-white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .navbar-logo {
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $cosmic-white;
+
+      .logo-text {
+        font-family: 'Orbitron', sans-serif;
+        color: $star-yellow;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .logo-icon {
+        font-size: 1.25rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: $cosmic-white;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    .material-icons {
+      font-size: 2rem;
+    }
+  }
+
+  .navbar-links {
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0 0.5rem;
+
+        a {
+          display: flex;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          color: $cosmic-white;
+          text-decoration: none;
+          border-radius: 4px;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+
+          &.active {
+            background-color: $alien-green;
+            color: white;
+          }
+
+          .material-icons {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-auth {
+    .btn-login {
+      display: flex;
+      align-items: center;
+      background-color: $nebula-pink;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: darken($nebula-pink, 10%);
+      }
+
+      .material-icons {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+
+      .username {
+        margin-right: 0.75rem;
+        font-weight: 500;
+      }
+
+      .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        background-color: $alien-green;
+        border-radius: 50%;
+        margin-right: 0.75rem;
+
+        .material-icons {
+          font-size: 1.25rem;
+        }
+      }
+
+      .btn-logout {
+        background: transparent;
+        color: $cosmic-white;
+        border: 1px solid $cosmic-white;
+        border-radius: 4px;
+        padding: 0.25rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+
+  // Mobile styles
+  @media (max-width: 767px) {
+    .navbar-container {
+      flex-wrap: wrap;
+    }
+
+    .mobile-toggle {
+      display: block;
+    }
+
+    .navbar-links, .navbar-auth {
+      display: none;
+      width: 100%;
+
+      &.active {
+        display: block;
+        margin-top: 1rem;
+      }
+    }
+
+    .navbar-links {
+      ul {
+        flex-direction: column;
+
+        li {
+          margin: 0.5rem 0;
+
+          a {
+            padding: 0.75rem 1rem;
+          }
+        }
+      }
+    }
+
+    .navbar-auth {
+      margin-top: 1rem;
+
+      .user-profile {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .username {
+          margin-right: 0.5rem;
+        }
+
+        .btn-logout {
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .material-icons {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+@import "variables";
+
+body {
+  margin: 0;
+  font-family: $font-primary;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: $deep-space;
+  color: $cosmic-white;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-headings;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, $nebula-pink, $alien-green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 2rem;
+  color: $star-yellow;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+// Links
+a {
+  color: $nebula-pink;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: lighten($nebula-pink, 10%);
+  }
+}
+
+// Code and technical text
+code, pre, .tech-text {
+  font-family: 'Nova Mono', monospace;
+}
+
+// Custom utility classes
+.text-gradient {
+  background: linear-gradient(90deg, $alien-green, $nebula-pink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-cosmic {
+  color: $cosmic-white;
+}
+
+.text-stellar {
+  color: $alien-green;
+}
+
+.text-nebula {
+  color: $nebula-pink;
+}
+
+.text-star {
+  color: $star-yellow;
+}

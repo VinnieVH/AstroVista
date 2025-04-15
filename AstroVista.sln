@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Shared", "AstroVista.Shared\AstroVista.Shared.csproj", "{FCAD7598-A9A4-4DEB-BCFF-E169EA2A4995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.WebClient", "AstroVista.WebClient\AstroVista.WebClient.csproj", "{FD369BDF-5373-411E-B75A-350F90949078}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,10 +44,10 @@ Global
 		{1754BDCD-DB57-4E1E-A2C9-82A96A2F7FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1754BDCD-DB57-4E1E-A2C9-82A96A2F7FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1754BDCD-DB57-4E1E-A2C9-82A96A2F7FFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD369BDF-5373-411E-B75A-350F90949078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD369BDF-5373-411E-B75A-350F90949078}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD369BDF-5373-411E-B75A-350F90949078}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD369BDF-5373-411E-B75A-350F90949078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B6C519E-18E0-4BC2-B7CF-527F74B26F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B6C519E-18E0-4BC2-B7CF-527F74B26F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B6C519E-18E0-4BC2-B7CF-527F74B26F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B6C519E-18E0-4BC2-B7CF-527F74B26F67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

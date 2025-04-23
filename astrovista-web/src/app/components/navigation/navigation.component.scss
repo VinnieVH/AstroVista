@@ -1,4 +1,6 @@
+@use 'sass:color';
 @import "variables";
+
 
 .navbar {
   position: fixed;
@@ -15,7 +17,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1.5rem;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
   }
 
@@ -91,6 +93,17 @@
   }
 
   .navbar-auth {
+    min-width: 250px; /* Adjust based on your content */
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+
+    &.auth-container {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
     .btn-login {
       display: flex;
       align-items: center;
@@ -103,7 +116,7 @@
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: darken($nebula-pink, 10%);
+        background-color: color.adjust($nebula-pink, $lightness: 10%);
       }
 
       .material-icons {
@@ -114,10 +127,18 @@
     .user-profile {
       display: flex;
       align-items: center;
+      height: 31px;
 
-      .username {
-        margin-right: 0.75rem;
-        font-weight: 500;
+      .username-container {
+        max-width: 150px;
+
+        .username {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: 500;
+        }
       }
 
       .avatar {

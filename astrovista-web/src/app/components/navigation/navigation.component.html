@@ -27,16 +27,21 @@
     </div>
 
     <!-- Auth section -->
-    <div class="navbar-auth" [class.active]="isMobileMenuOpen || !isMobileView">
-      <ng-container *ngIf="!isLoggedIn">
+    <div class="navbar-auth auth-container" [class.active]="isMobileMenuOpen || !isMobileView">
+      <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
         <button class="btn-login" (click)="login()">
           Login
         </button>
+        <button class="btn-login" (click)="login()">
+          Register
+        </button>
       </ng-container>
 
-      <ng-container *ngIf="isLoggedIn">
+      <ng-template #loggedInTemplate>
         <div class="user-profile">
-          <span class="username">{{username}}</span>
+          <div class="username-container">
+            <span class="username">{{username}}</span>
+          </div>
           <div class="avatar">
             <span class="material-icons">person</span>
           </div>
@@ -44,7 +49,7 @@
             Logout
           </button>
         </div>
-      </ng-container>
+      </ng-template>
     </div>
   </div>
 </nav>

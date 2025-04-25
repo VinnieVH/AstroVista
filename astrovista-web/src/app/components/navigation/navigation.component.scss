@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import "variables";
+@use "assets/styles/variables";
 
 
 .navbar {
@@ -7,10 +7,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to right, $deep-space, $cosmic-blue);
-  color: $cosmic-white;
+  background: linear-gradient(to right, variables.$deep-space, variables.$cosmic-blue);
+  color: variables.$cosmic-white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  //z-index: 1000;
 
   .navbar-container {
     display: flex;
@@ -26,11 +26,11 @@
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: $cosmic-white;
+      color: variables.$cosmic-white;
 
       .logo-text {
-        font-family: 'Orbitron', sans-serif;
-        color: $star-yellow;
+        font-family: variables.$font-headings;
+        color: variables.$star-yellow;
         font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: 1px;
@@ -47,7 +47,7 @@
     display: none;
     background: transparent;
     border: none;
-    color: $cosmic-white;
+    color: variables.$cosmic-white;
     font-size: 1.5rem;
     cursor: pointer;
 
@@ -70,7 +70,7 @@
           display: flex;
           align-items: center;
           padding: 0.5rem 1rem;
-          color: $cosmic-white;
+          color: variables.$cosmic-white;
           text-decoration: none;
           border-radius: 4px;
           transition: all 0.3s ease;
@@ -80,7 +80,7 @@
           }
 
           &.active {
-            background-color: $alien-green;
+            background-color: variables.$alien-green;
             color: white;
           }
 
@@ -107,7 +107,7 @@
     .btn-login {
       display: flex;
       align-items: center;
-      background-color: $nebula-pink;
+      background-color: variables.$nebula-pink;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
@@ -116,7 +116,7 @@
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: color.adjust($nebula-pink, $lightness: 10%);
+        background-color: color.adjust(variables.$nebula-pink, $lightness: 10%);
       }
 
       .material-icons {
@@ -147,7 +147,7 @@
         justify-content: center;
         width: 2rem;
         height: 2rem;
-        background-color: $alien-green;
+        background-color: variables.$alien-green;
         border-radius: 50%;
         margin-right: 0.75rem;
 
@@ -158,8 +158,8 @@
 
       .btn-logout {
         background: transparent;
-        color: $cosmic-white;
-        border: 1px solid $cosmic-white;
+        color: variables.$cosmic-white;
+        border: 1px solid variables.$cosmic-white;
         border-radius: 4px;
         padding: 0.25rem;
         cursor: pointer;

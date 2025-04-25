@@ -1,17 +1,18 @@
-@import "variables";
+@use 'sass:color';
+@use "assets/styles/variables";
 
 body {
   margin: 0;
-  font-family: $font-primary;
+  font-family: variables.$font-primary;
   font-size: 16px;
   line-height: 1.6;
-  background-color: $deep-space;
-  color: $cosmic-white;
+  background-color: variables.$deep-space;
+  color: variables.$cosmic-white;
 }
 
 // Headings
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-headings;
+  font-family: variables.$font-headings;
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 700;
@@ -21,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
-  background: linear-gradient(90deg, $nebula-pink, $alien-green);
+  background: linear-gradient(90deg, variables.$nebula-pink, variables.$alien-green);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -29,7 +30,7 @@ h1 {
 
 h2 {
   font-size: 2rem;
-  color: $star-yellow;
+  color: variables.$star-yellow;
 }
 
 h3 {
@@ -50,12 +51,12 @@ h6 {
 
 // Links
 a {
-  color: $nebula-pink;
+  color: variables.$nebula-pink;
   text-decoration: none;
   transition: color 0.3s ease;
 
   &:hover {
-    color: lighten($nebula-pink, 10%);
+    color: color.adjust(variables.$nebula-pink, $lightness: 10%);
   }
 }
 
@@ -66,24 +67,24 @@ code, pre, .tech-text {
 
 // Custom utility classes
 .text-gradient {
-  background: linear-gradient(90deg, $alien-green, $nebula-pink);
+  background: linear-gradient(90deg, variables.$alien-green, variables.$nebula-pink);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-cosmic {
-  color: $cosmic-white;
+  color: variables.$cosmic-white;
 }
 
 .text-stellar {
-  color: $alien-green;
+  color: variables.$alien-green;
 }
 
 .text-nebula {
-  color: $nebula-pink;
+  color: variables.$nebula-pink;
 }
 
 .text-star {
-  color: $star-yellow;
+  color: variables.$star-yellow;
 }

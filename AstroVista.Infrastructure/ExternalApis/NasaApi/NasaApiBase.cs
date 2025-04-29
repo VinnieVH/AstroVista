@@ -5,8 +5,8 @@ namespace AstroVista.Infrastructure.ExternalApis.NasaApi;
 
 public abstract class NasaApiBase
 {
-    protected readonly HttpClient _httpClient;
-    protected readonly string _apiKey;
+    private readonly HttpClient _httpClient;
+    private readonly string _apiKey;
     
     protected NasaApiBase(HttpClient httpClient, IConfiguration configuration)
     {

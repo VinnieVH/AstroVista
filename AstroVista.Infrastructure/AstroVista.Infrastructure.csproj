@@ -17,11 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\AstroVista.Application\AstroVista.Application.csproj" />
       <ProjectReference Include="..\AstroVista.Core\AstroVista.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Handlers\Queries\" />
     </ItemGroup>
 
 </Project>

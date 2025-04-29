@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Core", "AstroVis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Infrastructure", "AstroVista.Infrastructure\AstroVista.Infrastructure.csproj", "{6DCF2E10-8A4F-4FC1-9F53-305C20033CA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Shared", "AstroVista.Shared\AstroVista.Shared.csproj", "{FCAD7598-A9A4-4DEB-BCFF-E169EA2A4995}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroVista.Application", "AstroVista.Application\AstroVista.Application.csproj", "{5B515EFF-F015-4508-B7EC-CB3508AE960B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +48,14 @@ Global
 		{7B6C519E-18E0-4BC2-B7CF-527F74B26F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B6C519E-18E0-4BC2-B7CF-527F74B26F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B6C519E-18E0-4BC2-B7CF-527F74B26F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B9A5DD9-3788-4FCC-AD24-AFD8645E18AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9A5DD9-3788-4FCC-AD24-AFD8645E18AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9A5DD9-3788-4FCC-AD24-AFD8645E18AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9A5DD9-3788-4FCC-AD24-AFD8645E18AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B515EFF-F015-4508-B7EC-CB3508AE960B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B515EFF-F015-4508-B7EC-CB3508AE960B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B515EFF-F015-4508-B7EC-CB3508AE960B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B515EFF-F015-4508-B7EC-CB3508AE960B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

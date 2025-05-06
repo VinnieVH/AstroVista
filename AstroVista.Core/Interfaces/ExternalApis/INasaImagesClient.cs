@@ -10,5 +10,6 @@ namespace AstroVista.Core.Interfaces.ExternalApis
         Task<NasaMetadataLocation?> GetMetadataLocationAsync(string nasaId, CancellationToken cancellationToken);
         Task<NasaCaptionsLocation?> GetCaptionsLocationAsync(string nasaId, CancellationToken cancellationToken);
         Task<NasaAlbumContents?> GetAlbumContentsAsync(CancellationToken cancellationToken, string albumName, int page = 1);
+        Task<NasaLatestImagesCollection?> GetLatestImagesAsync(CancellationToken cancellationToken, int page = 1, int pageSize = 100);
     }
 }

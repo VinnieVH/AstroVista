@@ -11,7 +11,12 @@ public static class NasaImageEndpoints
     {
         var group = app.MapApiGroup("/api/nasa/image", "Nasa Image");
 
-        group.MapGet("/", SearchImage)
+        group.MapGet("/latest", GetLatestImages)
+            .WithName("GetLatestImages")
+            .Produces(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
+
+        group.MapGet("/search", SearchImages)
             .WithName("SearchNasaImages")
             .Produces(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status404NotFound)
@@ -19,8 +24,8 @@ public static class NasaImageEndpoints
         return app;
     }
     
-    private static async Task<IResult> SearchImage(
-        string query, 
+    private static async Task<IResult> SearchImages(
+        string? query, 
         string? mediaType, 
         int? page, 
         int? pageSize, 
@@ -38,6 +43,26 @@ public static class NasaImageEndpoints
             return result.SearchResult != null 
                 ? Results.Ok(result.SearchResult) 
                 : Results.NotFound();
+        }
+        catch (Exception ex)
+        {
+            // Log the exception
+            return Results.Problem(
+                title: "Error searching NASA images API",
+                detail: ex.Message,
+                statusCode: 500);
+        }
+    }
+    
+    private static async Task<IResult> GetLatestImages(
+        IMessageBus bus)
+    {
+        try
+        {
+            var command = new GetLatestImagesQuery();
+
+            var result = await bus.InvokeAsync<GetLatestImagesResponse>(command);
+            return Results.Ok(result);
         }
         catch (Exception ex)
         {

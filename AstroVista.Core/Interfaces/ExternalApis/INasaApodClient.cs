@@ -4,5 +4,5 @@ namespace AstroVista.Core.Interfaces.ExternalApis;
 
 public interface INasaApodClient
 {
-    Task<AstronomyPicture?> GetApodAsync(DateTime? date = null, bool? thumbs = null);
+    Task<AstronomyPicture?> GetApodAsync( CancellationToken cancellationToken,DateTime? date = null, bool? thumbs = null);
 }

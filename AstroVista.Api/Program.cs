@@ -5,6 +5,7 @@ using AstroVista.Core.Interfaces.ExternalApis;
 using AstroVista.Core.Interfaces.Repositories;
 using AstroVista.Infrastructure.Data.Context;
 using AstroVista.Infrastructure.Data.Repositories;
+using AstroVista.Infrastructure.ExternalApis;
 using AstroVista.Infrastructure.ExternalApis.NasaApi;
 using Microsoft.EntityFrameworkCore;
 using Wolverine;
@@ -19,6 +20,7 @@ var connectionString = builder.Configuration.GetConnectionString("AstroVistaDb")
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddHttpClient<INasaApodClient, NasaApodClient>();
+builder.Services.AddHttpClient<INasaImagesClient, NasaImagesClient>();
 
 builder.Host.UseWolverine(opts =>
 {
@@ -43,6 +45,7 @@ var app = builder.Build();
 
 app.MapUserEndpoints();
 app.MapNasaApodEndpoints();
+app.MapNasaImageEndpoints();
 
 if (app.Environment.IsDevelopment())
 {

@@ -1,3 +1,3 @@
-namespace AstroVista.Core.Messages.Responses.User;
+namespace AstroVista.Application.Users.Responses;
 
 public record CreateUserResponse(Guid UserId);

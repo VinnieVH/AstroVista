@@ -2,7 +2,7 @@ using AstroVista.Application.Nasa.Queries;
 using AstroVista.Core.Interfaces.ExternalApis;
 using AstroVista.Core.Models;
 
-namespace AstroVista.Infrastructure.Handlers.Queries.Nasa;
+namespace AstroVista.Application.Nasa.Handlers;
 
 public class GetApodQueryHandler
 {
@@ -11,6 +11,6 @@ public class GetApodQueryHandler
         INasaApodClient apodClient,
         CancellationToken cancellation)
     {
-        return apodClient.GetApodAsync(query.Date, query.ThumbsEnabled);
+        return apodClient.GetApodAsync(cancellation, query.Date, query.ThumbsEnabled);
     }
 }

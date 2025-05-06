@@ -8,7 +8,7 @@ namespace AstroVista.Infrastructure.ExternalApis.NasaApi;
 public class NasaApodClient(HttpClient httpClient, IConfiguration configuration)
     : NasaApiBase(httpClient, configuration), INasaApodClient
 {
-    public async Task<AstronomyPicture?> GetApodAsync(DateTime? date = null, bool? thumbs = null)
+    public async Task<AstronomyPicture?> GetApodAsync(CancellationToken cancellationToken, DateTime? date = null, bool? thumbs = null)
     {
         var parameters = new Dictionary<string, string>();
         

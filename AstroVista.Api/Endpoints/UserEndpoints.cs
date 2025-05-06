@@ -1,7 +1,7 @@
 using AstroVista.API.Endpoints.Common;
 using AstroVista.Application.Users.Commands;
 using AstroVista.Application.Users.Queries;
-using AstroVista.Core.Messages.Responses.User;
+using AstroVista.Application.Users.Responses;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Wolverine;

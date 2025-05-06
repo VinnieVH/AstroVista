@@ -1,7 +1,7 @@
 using AstroVista.Application.Users.Commands;
+using AstroVista.Application.Users.Responses;
 using AstroVista.Core.Entities;
 using AstroVista.Core.Interfaces.Repositories;
-using AstroVista.Core.Messages.Responses.User;
 
 namespace AstroVista.Application.Users.Handlers;
 

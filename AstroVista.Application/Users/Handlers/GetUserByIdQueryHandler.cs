@@ -1,9 +1,8 @@
 using AstroVista.Application.Users.Queries;
-using AstroVista.Core.Entities;
+using AstroVista.Application.Users.Responses;
 using AstroVista.Core.Interfaces.Repositories;
-using AstroVista.Core.Messages.Responses.User;
 
-namespace AstroVista.Infrastructure.Handlers.Queries.Users;
+namespace AstroVista.Application.Users.Handlers;
 
 public class GetUserByIdQueryHandler
 {

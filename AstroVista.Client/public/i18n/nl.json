@@ -1,5 +1,8 @@
 {
 	"NAME.DESCRIPTION": "Uw venster naar het universum!",
+  "LANDING.TAGLINE": "Reis door het heelal — interactief, verbluffend en echt.",
+  "LANDING.SUBTEXT": "Begin op Aarde en zoom uit tot het verste punt in de ruimte.\n Raak planeten aan, kaart sterrenstelsels en ontrafel de geheimen van het heelal — allemaal mogelijk gemaakt door NASA's open data.",
+  "LANDING.ENTER": "Begin met verkennen",
 	"NAV.LOGIN": "Inloggen",
 	"NAV.LOGOUT": "UItloggen",
 	"NAV.PICTURE_OF_THE_DAY": "Afbeelding van de dag",

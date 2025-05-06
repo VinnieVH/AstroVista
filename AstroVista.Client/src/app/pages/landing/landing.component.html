@@ -1,0 +1,21 @@
+<!-- landing.component.html -->
+<div class="landing-container">
+  <app-star-field [starsCount]="20" ></app-star-field>
+
+  <div class="content-overlay">
+    <div class="content-panel">
+      <h1>Astro Vista</h1>
+      <p class="tagline">
+        {{'LANDING.TAGLINE' | translate }}
+      </p>
+      <p class="subtext">
+        {{'LANDING.SUBTEXT' | translate }}
+      </p>
+      <div class="action-buttons">
+        <a routerLink="/home" class="enter-button">
+          {{'LANDING.ENTER' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

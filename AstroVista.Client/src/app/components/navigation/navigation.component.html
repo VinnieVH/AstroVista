@@ -6,12 +6,10 @@
       </a>
     </div>
 
-    <!-- Mobile toggle button -->
     <button class="mobile-toggle" *ngIf="isMobileView" (click)="toggleMobileMenu()">
       <span class="material-icons">{{ isMobileMenuOpen ? 'close' : 'menu' }}</span>
     </button>
 
-    <!-- Navigation links - shown always on desktop, conditionally on mobile -->
     <div class="navbar-links" [class.active]="isMobileMenuOpen || !isMobileView">
       <ul>
         <li *ngFor="let link of navLinks">
@@ -26,7 +24,6 @@
       </ul>
     </div>
 
-    <!-- Auth section -->
     <div class="navbar-auth auth-container" [class.active]="isMobileMenuOpen || !isMobileView">
       <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
         <button class="btn-login" (click)="login()">

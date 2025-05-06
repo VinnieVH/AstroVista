@@ -10,7 +10,6 @@ body {
   color: variables.$cosmic-white;
 }
 
-// Headings
 h1, h2, h3, h4, h5, h6 {
   font-family: variables.$font-headings;
   margin-top: 0;
@@ -22,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
-  background: linear-gradient(90deg, variables.$nebula-pink, variables.$alien-green);
+  background: variables.$alien-green-600;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -67,7 +66,7 @@ code, pre, .tech-text {
 
 // Custom utility classes
 .text-gradient {
-  background: linear-gradient(90deg, variables.$alien-green, variables.$nebula-pink);
+  background: linear-gradient(90deg, variables.$alien-green-500, variables.$nebula-pink);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -78,7 +77,7 @@ code, pre, .tech-text {
 }
 
 .text-stellar {
-  color: variables.$alien-green;
+  color: variables.$alien-green-500;
 }
 
 .text-nebula {

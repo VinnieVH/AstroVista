@@ -1,11 +1,15 @@
-import {ResolveFn, Routes} from '@angular/router';
-import { marker as _ } from '@colsen1991/ngx-translate-extract-marker';
+import { Routes } from '@angular/router';
 import { PictureOfTheDayComponent } from './pages/picture-of-the-day/picture-of-the-day.component';
 import { HistoryComponent } from './pages/history/history.component';
-import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
+import {LandingComponent} from './pages/landing/landing.component';
+import {LayoutComponent} from './pages/layout/layout.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent},
-  { path: 'history', component: HistoryComponent },
-  { path: 'picture-of-the-day', component: PictureOfTheDayComponent }
+  { path: '', component: LandingComponent, pathMatch: 'full' },
+  { path: '', component: LayoutComponent, children: [
+    { path: 'home', component: HomeComponent },
+    { path: 'history', component: HistoryComponent },
+    { path: 'picture-of-the-day', component: PictureOfTheDayComponent }
+  ]},
 ];

@@ -10,50 +10,79 @@ Data Sources: NASA APIs and other space-related data services
 ## Solution Structure
 
 ```
-CopyAstroVista/
-├── AstroVista.Api/                  # GraphQL API entry point (ASP.NET Core Minimal API)
-│   ├── Program.cs
-│   ├── GraphQL/                     # GraphQL schema definitions
-│   │   ├── Queries/
-│   │   ├── Mutations/
-│   │   ├── Types/
-│   │   └── AstroVistaSchema.cs
-│   └── Middleware/                  # API middleware components
+AstroVista/
+├── AstroVista.API/                 # .NET Core Minimal API project
+│   ├── Endpoints/                  # Organized API endpoints by feature
+│   │   └── Common/                 # Common endpoint utilities
+│   ├── Middleware/                 # Custom middleware components
+│   ├── Filters/                    # API filters
+│   ├── Program.cs                  # Application entry point and Wolverine setup
+│   ├── appsettings.json            # Configuration
+│   └── Properties/
 │
-├── AstroVista.Core/                 # Business domain and logic
-│   ├── Entities/                    # Domain entities
-│   ├── Interfaces/                  # Core interfaces (repositories, services)
-│   ├── DTOs/                        # Data transfer objects
-│   └── Services/                    # Business logic implementations
+├── AstroVista.Core/                # Core domain, entities, interfaces
+│   ├── Entities/                   # Domain entities
+│   ├── Interfaces/                 # Core interfaces (repositories, services)
+│   ├── Exceptions/                 # Domain-specific exceptions
+│   └── ValueObjects/               # Value objects for the domain
 │
-├── AstroVista.Infrastructure/       # External services implementation
-│   ├── Data/                        # Data access
-│   │   ├── Repositories/            # Repository implementations
-│   │   └── Context/                 # DB context if needed
-│   ├── ExternalApis/                # NASA API client implementations
-│   │   ├── NasaApodClient.cs
-│   │   ├── MarsRoverClient.cs
-│   │   └── NasaApiBase.cs
-│   └── Services/                    # External service implementations
+├── AstroVista.Application/         # Use cases, message handlers
+│   ├── DTOs/                       # Data Transfer Objects
+│   ├── Interfaces/                 # Application service interfaces
+│   ├── Mappings/                   # AutoMapper profiles
+│   ├── Features/                   # CQRS features organized by domain concepts
+│   │   ├── Users/       
+│   │   │   ├── Commands/           # Command messages
+│   │   │   ├── Queries/            # Query messages
+│   │   │   └── Handlers/           # Wolverine message handlers
+│   │   ├── Observations/
+│   │   │   ├── Commands/
+│   │   │   ├── Queries/
+│   │   │   └── Handlers/
+│   │   ├── CelestialBodies/
+│   │   │   ├── Commands/
+│   │   │   ├── Queries/
+│   │   │   └── Handlers/
+│   │   └── Auth/
+│   │       ├── Commands/
+│   │       └── Handlers/
+│   ├── Behaviors/                  # Wolverine pipeline behaviors
+│   ├── Common/                     # Shared application utilities
+│   ├── DependencyInjection.cs      # Registers application services
+│   └── WolverineRegistry.cs        # Wolverine configuration
 │
-├── AstroVista.Shared/               # Cross-cutting concerns
-│   ├── Extensions/                  # Extension methods
-│   ├── Constants/                   # Shared constants
-│   └── Utilities/                   # Helper functions
+├── AstroVista.Infrastructure/      # Data access, external services
+│   ├── Data/
+│   │   ├── Configurations/         # Entity Framework configurations
+│   │   ├── Repositories/           # Repository implementations
+│   │   ├── AstroVistaDbContext.cs
+│   │   └── Migrations/
+│   ├── Services/                   # External service implementations
+│   ├── DependencyInjection.cs      # Infrastructure dependency registration
+│   └── Identity/                   # Authentication/authorization
 │
-├── tests/
-│   ├── AstroVista.UnitTests/            # Unit tests
-│   ├── AstroVista.IntegrationTests/     # Integration tests
-│   └── AstroVista.GraphQLTests/         # GraphQL schema tests
+├── AstroVista.Client/              # Angular 19 frontend
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── core/               # Core module
+│   │   │   ├── shared/             # Shared module
+│   │   │   ├── features/           # Feature modules
+│   │   │   ├── layout/             # Layout components
+│   │   │   ├── app-routing.module.ts
+│   │   │   ├── app.component.ts
+│   │   │   └── app.module.ts
+│   │   ├── assets/                 # Static assets
+│   │   ├── environments/           # Environment configurations
+│   │   ├── index.html
+│   │   └── styles.scss
+│   ├── angular.json
+│   ├── package.json
+│   └── tsconfig.json
 │
-└── client/                              # Angular 19 frontend
-├── src/
-│   ├── app/                         # Angular components and modules
-│   ├── assets/                      # Static assets
-│   └── environments/                # Environment configurations
-├── angular.json
-└── package.json
-
+└── tests/                          # Test projects
+    ├── AstroVista.UnitTests/
+    ├── AstroVista.IntegrationTests/
+    └── AstroVista.E2ETests/    
 ```
 ## Key Components
 ### Backend (.NET Core)

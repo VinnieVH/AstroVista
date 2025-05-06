@@ -1,17 +1,28 @@
-// Space theme color palette
+// Space theme color palette with alien-green variants
+$alien-green-50: #f0fdf4;
+$alien-green-100: #dbfde6;
+$alien-green-200: #baf8cf;
+$alien-green-300: #84f1aa;
+$alien-green-400: #48e07d;
+$alien-green-500: #1db954;
+$alien-green-600: #14a547;
+$alien-green-700: #13823b;
+$alien-green-800: #156633;
+$alien-green-900: #13542c;
+$alien-green-950: #042f15;
+
 $deep-space: #0f1123;
 $cosmic-blue: #1e3f66;
-$alien-green: #1DB954;
 $nebula-pink: #d63384;
 $star-yellow: #ffc107;
 $cosmic-white: #e9ecef;
 
-// Font families
+// Font families remain unchanged
 $font-primary: 'Space Grotesk', sans-serif;
 $font-headings: 'Orbitron', sans-serif;
 $font-mono: 'Nova Mono', monospace;
 
-// Font weights
+// Font weights remain unchanged
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;

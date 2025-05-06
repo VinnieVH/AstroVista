@@ -17,9 +17,8 @@ interface NavLink {
 })
 export class NavigationComponent implements OnInit {
   navLinks: NavLink[] = [
-    { path: '/', label: 'Home' },
+    { path: '/home', label: 'Home' },
     { path: '/history', label: 'History' },
-    { path: '/galaxies', label: 'Galaxies' }
   ];
 
   isLoggedIn = false; // This will be connected to auth service later

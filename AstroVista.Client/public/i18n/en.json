@@ -1,6 +1,9 @@
 {
 	"NAME.DESCRIPTION": "Your window to the universe!",
-	"NAV.LOGIN": "Login",
+  "LANDING.TAGLINE": "Travel the cosmos — interactive, stunning, and real.",
+  "LANDING.SUBTEXT": "Start from Earth and zoom out to the farthest point in space.\n Touch planets, map galaxies, and uncover the secrets of the cosmos — all powered by NASA's open data.",
+	"LANDING.ENTER": "Start exploring",
+  "NAV.LOGIN": "Login",
 	"NAV.LOGOUT": "Logout",
 	"NAV.PICTURE_OF_THE_DAY": "Picture of the day",
 	"NAV.REGISTER": "Register"

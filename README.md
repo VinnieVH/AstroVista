@@ -146,16 +146,6 @@ User favorites and collections
 ### Development Workflow
 
 - Backend and frontend can be developed independently
-- GraphQL schema provides a clear contract between front and back ends
-- Use GraphQL playground at /graphql for API exploration and testing
-
-## Why GraphQL?
-AstroVista uses GraphQL to provide a unified interface to multiple NASA APIs, enabling:
-
-Precise data fetching for different UI views
-Reduced network overhead
-Rich exploratory queries for connecting space-related data
-Flexibility for evolving UI requirements
 
 ## Testing
 
@@ -174,4 +164,4 @@ All contributors and space enthusiasts
 
 ---
 
-Explore the cosmos with AstroVista! 🚀🌌
+Explore the cosmos with AstroVista! 🚀 🌌

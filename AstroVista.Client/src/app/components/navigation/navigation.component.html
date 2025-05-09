@@ -1,52 +1,81 @@
-<nav class="navbar">
-  <div class="navbar-container">
-    <div class="navbar-logo">
-      <a routerLink="/">
-        <span class="logo-text">Astro Vista</span>
-      </a>
-    </div>
+<nav class="shadow-xl fixed w-full top-0 bg-ebony-950 border-solid border-ebony-300/10 border-b-1 text-ebony-50 z-1000">
+  <div class="px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        @if (isMobileView) {
+          <button type="button"
+                  class="relative inline-flex items-center justify-center rounded-md p-2 text-alien-green-400 hover:bg-alien-green-950 hover:text-ebony-50 focus:ring-2 focus:ring-alien-green-500 focus:outline-hidden focus:ring-inset"
+                  aria-controls="mobile-menu"
+                  (click)="toggleMobileMenu()"
+                  [attr.aria-expanded]="isMobileMenuOpen">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
 
-    <button class="mobile-toggle" *ngIf="isMobileView" (click)="toggleMobileMenu()">
-      <span class="material-icons">{{ isMobileMenuOpen ? 'close' : 'menu' }}</span>
-    </button>
-
-    <div class="navbar-links" [class.active]="isMobileMenuOpen || !isMobileView">
-      <ul>
-        <li *ngFor="let link of navLinks">
-          <a
-            [routerLink]="link.path"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: link.path === '/'}"
-          >
-            {{link.label}}
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="navbar-auth auth-container" [class.active]="isMobileMenuOpen || !isMobileView">
-      <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
-        <button class="btn-login" (click)="login()">
-          {{'NAV.LOGIN' | translate}}
-        </button>
-        <button class="btn-login" (click)="login()">
-          {{'NAV.REGISTER' | translate}}
-        </button>
-      </ng-container>
-
-      <ng-template #loggedInTemplate>
-        <div class="user-profile">
-          <div class="username-container">
-            <span class="username">{{username}}</span>
-          </div>
-          <div class="avatar">
-            <span class="material-icons">person</span>
-          </div>
-          <button class="btn-logout" (click)="logout()">
-            {{'NAV.LOGOUT' | translate}}
+            <span class="material-icons">
+              {{ isMobileMenuOpen ? 'close' : 'menu' }}
+            </span>
           </button>
+        }
+      </div>
+
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex shrink-0 items-center">
+          <a routerLink="/">
+            <span class="text-ebony-200 font-bold text-xl">AstroVista</span>
+          </a>
         </div>
-      </ng-template>
+
+        <div class="hidden sm:ml-6 sm:block" [class.active]="isMobileMenuOpen || !isMobileView">
+          <div class="flex space-x-4">
+            @for (link of navLinks; track link.path) {
+              <a [routerLink]="link.path"
+                 routerLinkActive="bg-ebony-900 text-ebony-50"
+                 [routerLinkActiveOptions]="{exact: link.path === '/'}"
+                 class="text-ebony-50 rounded-md px-3 py-2 text-sm font-medium hover:bg-ebony-900 hover:text-ebony-50">
+                {{ link.label }}
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+           [class.active]="isMobileMenuOpen || !isMobileView">
+          <!-- Profile dropdown -->
+          <div class="relative ml-3 user-profile">
+            <div class="flex items-center">
+              <div class="username-container mr-2">
+                <span class="username text-ebony-50 text-sm truncate">{{ username }}</span>
+              </div>
+              <button type="button"
+                      class="relative flex rounded-full bg-alien-green-950 text-sm focus:ring-2 focus:ring-alien-green-500 focus:ring-offset-2 focus:ring-offset-deep-space focus:outline-hidden avatar"
+                      id="user-menu-button"
+                      aria-expanded="false"
+                      aria-haspopup="true">
+                <span class="absolute -inset-1.5"></span>
+                <span class="sr-only">Open user menu</span>
+                <div class="size-8 rounded-full bg-alien-green-900 flex items-center justify-center text-ebony-50">
+                  <span class="material-icons">person</span>
+                </div>
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="sm:hidden" id="mobile-menu" [ngClass]="{'hidden': !isMobileMenuOpen}">
+    <div class="space-y-1 px-2 pt-2 pb-3">
+      @for (link of navLinks; track link.path) {
+        <a [routerLink]="link.path"
+           routerLinkActive="bg-alien-green-100 text-ebony-50"
+           [routerLinkActiveOptions]="{exact: link.path === '/'}"
+           class="block rounded-md px-3 py-2 text-base font-medium text-ebony-50 hover:bg-ebony-900 hover:text-alien-green-100">
+          {{ link.label }}
+        </a>
+      }
     </div>
   </div>
 </nav>

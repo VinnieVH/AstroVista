@@ -7,7 +7,6 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 @Component({
   selector: 'app-star-field',
-  standalone: true,
   templateUrl: './star-field.component.html',
   styleUrl: './star-field.component.scss'
 })

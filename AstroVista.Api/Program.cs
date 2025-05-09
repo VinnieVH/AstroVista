@@ -22,6 +22,16 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddHttpClient<INasaApodClient, NasaApodClient>();
 builder.Services.AddHttpClient<INasaImagesClient, NasaImagesClient>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Development", policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Host.UseWolverine(opts =>
 {
     opts.PersistMessagesWithPostgresql(connectionString);
@@ -51,6 +61,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("Development");
 }
 
 app.Run();

@@ -10,14 +10,13 @@ interface NavLink {
 
 @Component({
   selector: 'app-navigation',
-  standalone: true,
   imports: [CommonModule, TranslateModule, RouterLink, RouterLinkActive],
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
   navLinks: NavLink[] = [
     { path: '/home', label: 'Home' },
+    { path: '/search', label: 'Search' },
     { path: '/history', label: 'History' },
   ];
 

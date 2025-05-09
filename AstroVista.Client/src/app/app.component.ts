@@ -6,7 +6,6 @@ import {TranslateModule, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, TranslateModule],
   templateUrl: './app.component.html'
 })

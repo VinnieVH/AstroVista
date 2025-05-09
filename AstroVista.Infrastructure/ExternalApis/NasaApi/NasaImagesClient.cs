@@ -135,7 +135,7 @@ public class NasaImagesClient : INasaImagesClient
 
     }
 
-    private string BuildQueryString(string endpoint, Dictionary<string, string?> parameters)
+    private string BuildQueryString(string endpoint, Dictionary<string, string> parameters)
     {
         var queryString = HttpUtility.ParseQueryString(string.Empty);
             

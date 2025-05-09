@@ -1,90 +1,29 @@
-@use 'sass:color';
-@use "assets/styles/variables";
-@import "tailwindcss";
+@use "tailwindcss";
 
-body {
-  margin: 0;
-  font-family: variables.$font-primary;
-  font-size: 16px;
-  line-height: 1.6;
-  background-color: variables.$deep-space;
-  color: variables.$cosmic-white;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: variables.$font-headings;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.5px;
-}
-
-h1 {
-  font-size: 2.5rem;
-  background: variables.$alien-green-600;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-h2 {
-  font-size: 2rem;
-  color: variables.$star-yellow;
-}
-
-h3 {
-  font-size: 1.75rem;
-}
-
-h4 {
-  font-size: 1.5rem;
-}
-
-h5 {
-  font-size: 1.25rem;
-}
-
-h6 {
-  font-size: 1rem;
-}
-
-// Links
-a {
-  color: variables.$nebula-pink;
-  text-decoration: none;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: color.adjust(variables.$nebula-pink, $lightness: 10%);
-  }
-}
-
-// Code and technical text
-code, pre, .tech-text {
-  font-family: 'Nova Mono', monospace;
-}
-
-// Custom utility classes
-.text-gradient {
-  background: linear-gradient(90deg, variables.$alien-green-500, variables.$nebula-pink);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-cosmic {
-  color: variables.$cosmic-white;
-}
-
-.text-stellar {
-  color: variables.$alien-green-500;
-}
-
-.text-nebula {
-  color: variables.$nebula-pink;
-}
-
-.text-star {
-  color: variables.$star-yellow;
+@theme{
+  --font-sans: ui-sans-serif, system-ui, sans-serif, 'Nova Mono';
+  --font-serif: ui-serif, Georgia, Cambria, 'Orbitron', Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Nova Mono', monospace;
+  --color-alien-green-50: #f0fdf4;
+  --color-alien-green-100: #dbfde6;
+  --color-alien-green-200: #baf8cf;
+  --color-alien-green-300: #84f1aa;
+  --color-alien-green-400: #48e07d;
+  --color-alien-green-500: #1db954;
+  --color-alien-green-600: #14a547;
+  --color-alien-green-700: #13823b;
+  --color-alien-green-800: #156633;
+  --color-alien-green-900: #13542c;
+  --color-alien-green-950: #042f15;
+  --color-ebony-50: #eff5fe;
+  --color-ebony-100: #e2ecfd;
+  --color-ebony-200: #cbdcfa;
+  --color-ebony-300: #acc4f5;
+  --color-ebony-400: #8aa3ef;
+  --color-ebony-500: #6e84e6;
+  --color-ebony-600: #5260d9;
+  --color-ebony-700: #434ebf;
+  --color-ebony-800: #39439a;
+  --color-ebony-900: #343d7b;
+  --color-ebony-950: #0f1123;
 }

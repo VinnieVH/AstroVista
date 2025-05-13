@@ -13,6 +13,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import { CelestialBodyService } from "../../api/celestial-body.service"
 import { CelestialBody } from "../../models/celestial-body.model"
 import {DecimalPipe, NgStyle, TitleCasePipe} from '@angular/common';
+import {Texture} from 'three';
 
 @Component({
   selector: "app-solar-system",
@@ -132,10 +133,11 @@ export class SolarSystemComponent implements OnInit, AfterViewInit, OnDestroy {
     // Create the Sun
     const sunGeometry = new THREE.SphereGeometry(5, 32, 32)
     const sunMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffff00
+      color: 0xffff00,
+      map: new THREE.TextureLoader().load("textures/sun.jpg")
     })
     const sun = new THREE.Mesh(sunGeometry, sunMaterial)
-    sun.userData['name'] = bodies.find((body) => body.name === "Sun")
+    sun.userData = bodies.find((body) => body.name === "Sun") ?? {}
     this.scene.add(sun)
     this.celestialBodies.set("Sun", sun)
 
@@ -146,7 +148,7 @@ export class SolarSystemComponent implements OnInit, AfterViewInit, OnDestroy {
         // Create orbit path
         const orbitGeometry = new THREE.RingGeometry(planet.orbitRadius, planet.orbitRadius + 0.05, 128)
         const orbitMaterial = new THREE.MeshBasicMaterial({
-          color: 0x444444,
+          color: 0xeff5fe,
           side: THREE.DoubleSide,
           transparent: true,
           opacity: 0.3,
@@ -156,11 +158,13 @@ export class SolarSystemComponent implements OnInit, AfterViewInit, OnDestroy {
         this.scene.add(orbit)
 
         // Create planet
-        const planetGeometry = new THREE.SphereGeometry(planet.radius, 32, 32)
+        const planetGeometry = new THREE.SphereGeometry(planet.radius, 32, 32);
+        console.log(planet.name);
         const planetMaterial = new THREE.MeshStandardMaterial({
           color: planet.color,
           roughness: 0.7,
           metalness: 0.1,
+          map: new THREE.TextureLoader().load(`textures/${planet.name.toLowerCase()}.jpg`),
         })
         const planetMesh = new THREE.Mesh(planetGeometry, planetMaterial)
 

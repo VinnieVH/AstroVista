@@ -1,73 +1,24 @@
 <div class="mx-auto max-w-2xl px-4 py-5 sm:px-6 sm:py-2 lg:max-w-7xl lg:px-8">
   <h2 class="text-2xl font-bold tracking-tight text-ebony-50 my-8">Search NASA images & videos</h2>
-  <div class="max-w-2xl my-7">
-    <div class="flex border border-ebony-700 rounded-md overflow-hidden">
-      <input
-        type="text"
-        placeholder="Search..."
-        class="w-full bg-ebony-950 py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-ebony-500"
-      />
-      <button class="bg-ebony-600 hover:bg-ebony-700 transition-colors p-3 text-ebony-50">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      </button>
-    </div>
-  </div>
+  <app-search-bar
+    [loading]="loading()"
+    (search)="handleSearch($event)">
+  </app-search-bar>
 </div>
+
 <div class="mx-auto max-w-2xl px-4 py-5 sm:px-6 sm:py-2 lg:max-w-7xl lg:px-8">
-  @if(loading()) {
-    <!-- Skeleton loader -->
-    <div class="h-8 w-64 bg-gray-700 rounded-md animate-pulse"></div>
+  <app-image-grid
+    [images]="images()"
+    [loading]="loading()"
+    [searchQuery]="currentSearchQuery()">
+  </app-image-grid>
 
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      @for(item of [1,2,3,4,5,6,7,8]; track item) {
-        <div class="group relative">
-          <div class="aspect-square w-full rounded-md bg-gray-700 animate-pulse lg:aspect-auto lg:h-80"></div>
-          <div class="mt-4 flex justify-between">
-            <div class="w-full">
-              <div class="h-4 w-3/4 bg-gray-700 rounded-md animate-pulse"></div>
-              <div class="mt-2 h-3 w-1/2 bg-gray-700 rounded-md animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-  } @else {
-    <!-- Actual content -->
-    <h2 class="text-2xl font-bold tracking-tight text-ebony-50">Latest images & videos</h2>
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      @for(image of images(); track image.data[0].nasaId) {
-        <div class="group relative rounded cursor-pointer overflow-hidden">
-          <div class="relative w-full lg:h-80 overflow-hidden">
-            <img
-              src="{{image.links[0].href}}"
-              [alt]="image.data[0].description"
-              class="aspect-square w-full bg-gray-200 object-cover lg:aspect-auto lg:h-80 transition-transform duration-500 ease-in-out group-hover:scale-105"
-            >
-
-            <div class="absolute inset-0 bg-gradient-to-t from-ebony-700/80 to-transparent pointer-events-none"></div>
-            <div class="mt-4 flex justify-between">
-              <div class="absolute bottom-8 left-3 right-3 flex justify-between items-center z-10">
-                <div class="flex flex-col">
-                  <h3 class="max-w-45 text-sm text-ebony-50 truncate overflow-hidden">
-                    <a href="#">
-                      <span aria-hidden="true" class="absolute inset-0"></span>
-                      {{image.data[0].title}}
-                    </a>
-                  </h3>
-                  <p class="mt-1 text-sm text-ebony-200">{{image.data[0].dateCreated | date:'longDate'}}</p>
-                </div>
-                <div class="h-10 w-10 rounded-full bg-ebony-200 flex items-center justify-center group-hover:bg-ebony-400 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-ebony-800" viewBox="0 0 448 512">
-                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-  }
+  <app-pagination
+    [currentPage]="currentPage()"
+    [itemsPerPage]="itemsPerPage()"
+    [totalItems]="totalItems()"
+    [totalPages]="totalPages()"
+    (pageChange)="handlePageChange($event)"
+    (itemsPerPageChange)="handleItemsPerPageChange($event)">
+  </app-pagination>
 </div>

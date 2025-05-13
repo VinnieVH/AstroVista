@@ -5,7 +5,7 @@
         <!-- Mobile menu button-->
         @if (isMobileView) {
           <button type="button"
-                  class="relative inline-flex items-center justify-center rounded-md p-2 text-alien-green-400 hover:bg-alien-green-950 hover:text-ebony-50 focus:ring-2 focus:ring-alien-green-500 focus:outline-hidden focus:ring-inset"
+                  class="relative inline-flex items-center justify-center rounded-md p-2 text-ebony-400 hover:bg-ebony-950 hover:text-ebony-50 focus:ring-2 focus:ring-ebony-500 focus:outline-hidden focus:ring-inset"
                   aria-controls="mobile-menu"
                   (click)="toggleMobileMenu()"
                   [attr.aria-expanded]="isMobileMenuOpen">
@@ -25,12 +25,11 @@
             <span class="text-ebony-200 font-bold text-xl">AstroVista</span>
           </a>
         </div>
-
         <div class="hidden sm:ml-6 sm:block" [class.active]="isMobileMenuOpen || !isMobileView">
           <div class="flex space-x-4">
             @for (link of navLinks; track link.path) {
               <a [routerLink]="link.path"
-                 routerLinkActive="bg-ebony-900 text-ebony-50"
+                 routerLinkActive="bg-ebony-600 text-ebony-50"
                  [routerLinkActiveOptions]="{exact: link.path === '/'}"
                  class="text-ebony-50 rounded-md px-3 py-2 text-sm font-medium hover:bg-ebony-900 hover:text-ebony-50">
                 {{ link.label }}
@@ -45,17 +44,19 @@
           <!-- Profile dropdown -->
           <div class="relative ml-3 user-profile">
             <div class="flex items-center">
-              <div class="username-container mr-2">
-                <span class="username text-ebony-50 text-sm truncate">{{ username }}</span>
-              </div>
+              @if(!isMobileView) {
+                <div class="username-container mr-2">
+                  <span class="username text-ebony-50 text-sm truncate">{{ username }}</span>
+                </div>
+              }
               <button type="button"
-                      class="relative flex rounded-full bg-alien-green-950 text-sm focus:ring-2 focus:ring-alien-green-500 focus:ring-offset-2 focus:ring-offset-deep-space focus:outline-hidden avatar"
+                      class="relative flex rounded-full bg-ebony-950 text-sm focus:ring-2 focus:ring-ebony-500 focus:ring-offset-2 focus:ring-offset-deep-space focus:outline-hidden avatar"
                       id="user-menu-button"
                       aria-expanded="false"
                       aria-haspopup="true">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">Open user menu</span>
-                <div class="size-8 rounded-full bg-alien-green-900 flex items-center justify-center text-ebony-50">
+                <div class="size-8 rounded-full bg-ebony-900 flex items-center justify-center text-ebony-50">
                   <span class="material-icons">person</span>
                 </div>
               </button>
@@ -70,9 +71,9 @@
     <div class="space-y-1 px-2 pt-2 pb-3">
       @for (link of navLinks; track link.path) {
         <a [routerLink]="link.path"
-           routerLinkActive="bg-alien-green-100 text-ebony-50"
+           routerLinkActive="bg-ebony-600 text-ebony-50"
            [routerLinkActiveOptions]="{exact: link.path === '/'}"
-           class="block rounded-md px-3 py-2 text-base font-medium text-ebony-50 hover:bg-ebony-900 hover:text-alien-green-100">
+           class="block rounded-md px-3 py-2 text-base font-medium text-ebony-50 hover:bg-ebony-900 hover:text-ebony-100">
           {{ link.label }}
         </a>
       }

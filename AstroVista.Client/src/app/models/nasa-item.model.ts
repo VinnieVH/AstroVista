@@ -6,6 +6,14 @@ export interface NasaImageResponse {
   };
 }
 
+export interface SearchImagesResponse {
+  href: string;
+  items: NasaItem[];
+  links: NasaLink[];
+  totalHits: number;
+  version: string;
+}
+
 export interface NasaItem {
   data: NasaItemData[];
   href: string;

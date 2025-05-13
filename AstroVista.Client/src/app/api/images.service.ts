@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {catchError, map, throwError} from 'rxjs';
-import {NasaImageResponse} from '../models/nasa-item.model';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {catchError, map, tap, throwError} from 'rxjs';
+import {NasaImageResponse, SearchImagesResponse} from '../models/nasa-item.model';
 import {environment} from '../../environments/environment';
 
 @Injectable({
@@ -13,11 +13,20 @@ export class ImagesService {
   constructor(private http: HttpClient) {}
 
   getLatest() {
-    console.log(this.imagesAPIUrl, '/api/nasa/image/latest');
     return this.http
       .get<NasaImageResponse>(this.imagesAPIUrl + '/latest')
       .pipe(
         map(response => response.latestImages.items),
+        catchError(this.handleError)
+      );
+  }
+
+  searchImages(query: string) {
+    const params = new HttpParams().set('query', query);
+    return this.http
+      .get<SearchImagesResponse>(this.imagesAPIUrl + '/search', { params })
+      .pipe(
+        map(response => response.items || []),
         catchError(this.handleError)
       );
   }

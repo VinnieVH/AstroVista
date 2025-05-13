@@ -6,6 +6,12 @@ import {ImagesAPIActions, ImagesPageActions} from './images.actions';
 export interface ImagesState extends EntityState<NasaItem> {
   loading: boolean;
   errorMessage: string;
+  currentSearchQuery: string;
+  pagination: {
+    currentPage: number;
+    itemsPerPage: number;
+    totalItems: number;
+  }
 }
 
 export const adapter: EntityAdapter<NasaItem> = createEntityAdapter<NasaItem>({
@@ -15,6 +21,12 @@ export const adapter: EntityAdapter<NasaItem> = createEntityAdapter<NasaItem>({
 const initialState: ImagesState = adapter.getInitialState({
   loading: false,
   errorMessage: '',
+  currentSearchQuery: '',
+  pagination: {
+    currentPage: 1,
+    itemsPerPage: 8,
+    totalItems: 0
+  }
 });
 
 export const imagesFeature = createFeature({
@@ -24,18 +36,59 @@ export const imagesFeature = createFeature({
     on(ImagesPageActions.loadLatestImages, (state) => ({
       ...state,
       loading: true,
-      errorMessage: ''
+      errorMessage: '',
+      currentSearchQuery: ''
     })),
     on(ImagesAPIActions.latestImagesLoadedSuccess, (state, { images }) => ({
-      ...adapter.addMany(images, state),
+      ...adapter.setAll(images, state),
       loading: false,
-      errorMessage: ''
+      errorMessage: '',
+      currentSearchQuery: '',
+      pagination: {
+        ...state.pagination,
+        totalItems: images.length
+      }
     })),
     on(ImagesAPIActions.latestImagesLoadedFail, (state, { message }) => ({
       ...state,
       loading: false,
       errorMessage: message
-    }))
+    })),
+    on(ImagesPageActions.searchImages, (state) => ({
+      ...state,
+      loading: true,
+      errorMessage: ''
+    })),
+    on(ImagesAPIActions.searchImagesSuccess, (state, { images, query }) => ({
+      ...adapter.setAll(images, state),
+      loading: false,
+      errorMessage: '',
+      currentSearchQuery: query,
+      pagination: {
+        ...state.pagination,
+        totalItems: images.length
+      }
+    })),
+    on(ImagesAPIActions.searchImagesFail, (state, { message }) => ({
+      ...state,
+      loading: false,
+      errorMessage: message
+    })),
+    on(ImagesPageActions.changePage, (state, { page }) => ({
+      ...state,
+      pagination: {
+        ...state.pagination,
+        currentPage: page
+      }
+    })),
+    on(ImagesPageActions.setItemsPerPage, (state, { itemsPerPage }) => ({
+      ...state,
+      pagination: {
+        ...state.pagination,
+        itemsPerPage,
+        currentPage: 1 // Reset to first page when changing items per page
+      }
+    })),
   )
 });
 

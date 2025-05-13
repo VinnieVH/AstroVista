@@ -5,7 +5,9 @@ export const ImagesPageActions = createActionGroup({
   source: 'Images Page',
   events: {
     'Load Latest Images': emptyProps(),
-    'Search Images': props<{ query: string }>()
+    'Search Images': props<{ query: string }>(),
+    'Change Page': props<{ page: number }>(),
+    'Set Items Per Page': props<{ itemsPerPage: number }>()
   }
 })
 
@@ -16,7 +18,7 @@ export const ImagesAPIActions = createActionGroup({
     'Latest Images Loaded Success': props<{ images: NasaItem[] }>(),
     'Latest Images Loaded Fail': props<{ message: string }>(),
     'Search Images': emptyProps(),
-    'Search Images Success': props<{ images: NasaItem[] }>(),
+    'Search Images Success': props<{ images: NasaItem[], query: string }>(),
     'Search Images Fail': props<{ message: string }>()
   }
 })

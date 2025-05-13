@@ -1,0 +1,32 @@
+@if(loading) {
+  <!-- Skeleton loader -->
+  <div class="h-8 w-64 bg-gray-700 rounded-md animate-pulse"></div>
+
+  <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    @for(item of [1,2,3,4,5,6,7,8]; track item) {
+      <div class="group relative">
+        <div class="aspect-square w-full rounded-md bg-gray-700 animate-pulse lg:aspect-auto lg:h-80"></div>
+        <div class="mt-4 flex justify-between">
+          <div class="w-full">
+            <div class="h-4 w-3/4 bg-gray-700 rounded-md animate-pulse"></div>
+            <div class="mt-2 h-3 w-1/2 bg-gray-700 rounded-md animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  <h2 class="text-2xl font-bold tracking-tight text-ebony-50">
+    @if(searchQuery) {
+      Results for "{{ searchQuery }}"
+    } @else {
+      Latest images & videos
+    }
+  </h2>
+
+  <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    @for(image of images; track image.data[0].nasaId) {
+      <app-image-card [image]="image"></app-image-card>
+    }
+  </div>
+}

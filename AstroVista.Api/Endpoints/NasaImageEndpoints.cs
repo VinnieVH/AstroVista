@@ -1,6 +1,7 @@
 using AstroVista.API.Endpoints.Common;
 using AstroVista.Application.Nasa.Queries;
 using AstroVista.Application.Nasa.Responses;
+using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
 namespace AstroVista.Api.Endpoints;

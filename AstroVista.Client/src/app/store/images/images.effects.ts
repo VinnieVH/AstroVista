@@ -4,7 +4,8 @@ import {
   catchError,
   exhaustMap,
   map,
-  of
+  of,
+  tap
 } from 'rxjs';
 import { ImagesAPIActions, ImagesPageActions } from './images.actions';
 import { ImagesService } from '../../api/images.service';
@@ -14,11 +15,7 @@ export class ImagesEffects {
   constructor(
     private imagesService: ImagesService,
     private actions$: Actions
-  ) {
-    console.log('ImagesEffects constructor called');
-    console.log('actions$:', this.actions$);
-    console.log('imagesService:', this.imagesService);
-  }
+  ) {}
   ngrxOnInitEffects() {
     return ImagesPageActions.loadLatestImages();
   }
@@ -33,6 +30,22 @@ export class ImagesEffects {
           ),
           catchError((error) =>
             of(ImagesAPIActions.latestImagesLoadedFail({ message: error }))
+          )
+        )
+      )
+    )
+  );
+
+  searchImages$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ImagesPageActions.searchImages),
+      exhaustMap(({ query }) =>
+        this.imagesService.searchImages(query).pipe(
+          map((images) =>
+            ImagesAPIActions.searchImagesSuccess({ images, query })
+          ),
+          catchError((error) =>
+            of(ImagesAPIActions.searchImagesFail({ message: error }))
           )
         )
       )

@@ -89,7 +89,6 @@ AstroVista/
 The backend is structured around the following projects:
 AstroVista.Api
 
-GraphQL API endpoint using Hot Chocolate
 Minimal API setup with middleware configurations
 Authentication and authorization handlers
 
@@ -111,10 +110,9 @@ Utilities and helpers used across the solution
 Common extensions and constants
 
 ### Frontend (Angular 19)
-The frontend is an Angular 19 application that communicates with the GraphQL API to render space-related content:
+The frontend is an Angular 19 application that communicates with the API to render space-related content:
 
 Component-based architecture for various space views (planets, missions, images)
-Apollo Client for GraphQL communication
 Responsive design for desktop and mobile experiences
 Standalone components using Angular 19's latest features
 Signal-based state management
@@ -151,7 +149,6 @@ User favorites and collections
 
 Unit tests: dotnet test tests/AstroVista.UnitTests
 Integration tests: dotnet test tests/AstroVista.IntegrationTests
-GraphQL schema tests: dotnet test tests/AstroVista.GraphQLTests
 Frontend tests: cd client && ng test
 
 ## License

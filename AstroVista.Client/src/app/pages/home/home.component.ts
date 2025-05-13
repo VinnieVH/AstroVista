@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import {SolarSystemComponent} from '../../components/solar-system/solar-system.component';
 
 @Component({
   selector: 'app-home',
-  imports: [],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  imports: [
+    SolarSystemComponent
+  ],
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
 

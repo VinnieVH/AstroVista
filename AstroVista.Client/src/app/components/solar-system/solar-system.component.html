@@ -1,0 +1,33 @@
+<div class="relative h-[calc(100vh-64px)] overflow-hidden bg-ebony-950">
+  <div #rendererContainer class="w-full h-full"></div>
+
+  @if (isInfoVisible()) {
+    <div
+      class="absolute bg-black/80 border border-ebony-50/20 rounded-lg p-3 text-ebony-50 max-w-xs backdrop-blur-md z-10 pointer-events-none shadow-lg"
+      [ngStyle]="infoPosition()"
+    >
+      <h3 class="mt-0 mb-2 text-ebony-600 text-lg">{{ selectedBody()?.name }}</h3>
+      <div class="text-sm">
+        @if (selectedBody()?.type) {
+          <p class="my-1.5"><span class="text-ebony-500 font-semibold">Type:</span> {{ selectedBody()?.type | titlecase }}</p>
+        }
+        @if (selectedBody()?.diameter) {
+          <p class="my-1.5"><span class="text-ebony-500 font-semibold">Diameter:</span> {{ selectedBody()?.diameter | number }} km</p>
+        }
+        @if (selectedBody()?.distanceFromSun) {
+          <p class="my-1.5"><span class="text-ebony-500 font-semibold">Distance from Sun:</span> {{ selectedBody()?.distanceFromSun | number }} million km</p>
+        }
+        @if (selectedBody()?.orbitalPeriod) {
+          <p class="my-1.5"><span class="text-ebony-500 font-semibold">Orbital Period:</span> {{ selectedBody()?.orbitalPeriod }} days</p>
+        }
+        @if (selectedBody()?.description) {
+          <p class="my-1.5">{{ selectedBody()?.description }}</p>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="absolute bottom-5 left-5 text-ebony-50/70 bg-black/50 px-3 py-2 rounded text-xs">
+    <p>Use mouse to rotate view. Scroll to zoom in/out.</p>
+  </div>
+</div>

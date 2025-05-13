@@ -25,7 +25,7 @@ public class NasaImagesClient : INasaImagesClient
             {
                 ["q"] = query,
                 ["page"] = page.ToString(),
-                ["page_size"] = pageSize.ToString()
+                ["page_size"] = "all"
             };
 
             if (!string.IsNullOrEmpty(mediaType))
@@ -75,31 +75,11 @@ public class NasaImagesClient : INasaImagesClient
         }
     }
 
-    public Task<NasaAssetManifest?> GetAssetManifestAsync(string nasaId, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<NasaMetadataLocation?> GetMetadataLocationAsync(string nasaId, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<NasaCaptionsLocation?> GetCaptionsLocationAsync(string nasaId, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<NasaAlbumContents?> GetAlbumContentsAsync(CancellationToken cancellationToken, string albumName, int page = 1)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<NasaLatestImagesCollection?> GetLatestImagesAsync(CancellationToken cancellationToken, int page = 1, int pageSize = 100)
     {
         try
         {
-            var queryParams = new Dictionary<string, string>
+            var queryParams = new Dictionary<string, string?>
             {
                 ["orderby"] = "recent",
                 ["page"] = page.ToString(),
@@ -124,11 +104,11 @@ public class NasaImagesClient : INasaImagesClient
                         d.MediaType,
                         d.NasaId,
                         d.Title
-                    )).ToList(), x.Href, x.Links.Select(y => new NasaLink(
+                    )).ToList(), x.Href, x.Links?.Select(y => new NasaLink(
                         y.Href, y.Rel, y.Prompt, y.Render)).ToList())
                 ).ToList());
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return null;
         }

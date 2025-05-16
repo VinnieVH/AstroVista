@@ -19,6 +19,7 @@ export class CelestialBodyService {
       orbitRadius: 0,
       orbitalSpeed: 0,
       rotationSpeed: 0.002,
+      texturePath: "textures/sun.jpg"
     },
     {
       id: "mercury",
@@ -36,6 +37,7 @@ export class CelestialBodyService {
       orbitRadius: 10,
       orbitalSpeed: 0.04,
       rotationSpeed: 0.004,
+      texturePath: "textures/mercury.jpg"
     },
     {
       id: "venus",
@@ -53,6 +55,7 @@ export class CelestialBodyService {
       orbitRadius: 15,
       orbitalSpeed: 0.03,
       rotationSpeed: -0.002,
+      texturePath: "textures/venus.jpg"
     },
     {
       id: "earth",
@@ -70,6 +73,7 @@ export class CelestialBodyService {
       orbitRadius: 20,
       orbitalSpeed: 0.025,
       rotationSpeed: 0.01,
+      texturePath: "textures/earth.jpg",
       moons: [
         {
           id: "moon",
@@ -87,6 +91,7 @@ export class CelestialBodyService {
           orbitRadius: 2.5,
           orbitalSpeed: 0.05,
           rotationSpeed: 0.05,
+          texturePath: "textures/moon.jpg"
         },
       ],
     },
@@ -106,6 +111,7 @@ export class CelestialBodyService {
       orbitRadius: 25,
       orbitalSpeed: 0.02,
       rotationSpeed: 0.009,
+      texturePath: "textures/mars.jpg",
       moons: [
         {
           id: "phobos",
@@ -122,6 +128,7 @@ export class CelestialBodyService {
           orbitRadius: 1.5,
           orbitalSpeed: 0.1,
           rotationSpeed: 0.1,
+          texturePath: "textures/phobos.jpg"
         },
         {
           id: "deimos",
@@ -137,6 +144,7 @@ export class CelestialBodyService {
           orbitRadius: 2,
           orbitalSpeed: 0.08,
           rotationSpeed: 0.08,
+          texturePath: "textures/deimos.jpg"
         },
       ],
     },
@@ -156,6 +164,7 @@ export class CelestialBodyService {
       orbitRadius: 32,
       orbitalSpeed: 0.015,
       rotationSpeed: 0.02,
+      texturePath: "textures/jupiter.jpg",
       moons: [
         {
           id: "io",
@@ -170,6 +179,7 @@ export class CelestialBodyService {
           orbitRadius: 3.5,
           orbitalSpeed: 0.07,
           rotationSpeed: 0.07,
+          texturePath: "textures/io.jpg"
         },
         {
           id: "europa",
@@ -184,8 +194,10 @@ export class CelestialBodyService {
           orbitRadius: 4,
           orbitalSpeed: 0.06,
           rotationSpeed: 0.06,
+          texturePath: "textures/europa.jpg"
         },
       ],
+      rings: true
     },
     {
       id: "saturn",
@@ -196,6 +208,7 @@ export class CelestialBodyService {
       distanceFromSun: 1433.5,
       orbitalPeriod: 10747,
       rotationPeriod: 0.45,
+      texturePath: "textures/saturn.jpg",
       description:
         "Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has a prominent ring system.",
       radius: 2.2,
@@ -203,6 +216,7 @@ export class CelestialBodyService {
       orbitRadius: 39,
       orbitalSpeed: 0.01,
       rotationSpeed: 0.018,
+      rings: true
     },
     {
       id: "uranus",
@@ -213,6 +227,7 @@ export class CelestialBodyService {
       distanceFromSun: 2872.5,
       orbitalPeriod: 30589,
       rotationPeriod: -0.72, // Negative indicates retrograde rotation
+      texturePath: "textures/uranus.jpg",
       description:
         "Uranus is the seventh planet from the Sun. It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. It is an ice giant.",
       radius: 1.5,
@@ -220,6 +235,7 @@ export class CelestialBodyService {
       orbitRadius: 45,
       orbitalSpeed: 0.007,
       rotationSpeed: -0.015,
+      rings: true
     },
     {
       id: "neptune",
@@ -230,6 +246,7 @@ export class CelestialBodyService {
       distanceFromSun: 4495.1,
       orbitalPeriod: 59800,
       rotationPeriod: 0.67,
+      texturePath: "textures/neptune.jpg",
       description:
         "Neptune is the eighth and farthest known planet from the Sun in the Solar System. It is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.",
       radius: 1.4,
@@ -237,6 +254,7 @@ export class CelestialBodyService {
       orbitRadius: 50,
       orbitalSpeed: 0.005,
       rotationSpeed: 0.016,
+      rings: true
     },
     {
       id: "pluto",
@@ -247,6 +265,7 @@ export class CelestialBodyService {
       distanceFromSun: 5906.4,
       orbitalPeriod: 90560,
       rotationPeriod: -6.39, // Negative indicates retrograde rotation
+      texturePath: "textures/pluto.jpg",
       description:
         "Pluto is a dwarf planet in the Kuiper belt. It was the first Kuiper belt object to be discovered and was originally classified as the ninth planet from the Sun.",
       radius: 0.3,
@@ -257,17 +276,33 @@ export class CelestialBodyService {
     },
   ]
 
+  private asteroidBeltConfig = {
+    innerRadius: 27, // Just outside Mars orbit
+    outerRadius: 29, // Just inside Jupiter orbit
+    height: 1.2, // Thickness of the belt
+    count: 2000, // Number of asteroids
+    size: {
+      min: 0.02,
+      max: 0.1,
+    },
+    color: 0x8b7d6b,
+  }
+
   constructor() {}
 
   getCelestialBodies(): CelestialBody[] {
-    return this.celestialBodies
+    return this.celestialBodies;
   }
 
   getCelestialBodyById(id: string): CelestialBody | undefined {
-    return this.celestialBodies.find((body) => body.id === id)
+    return this.celestialBodies.find((body) => body.id === id);
   }
 
   getCelestialBodyByName(name: string): CelestialBody | undefined {
-    return this.celestialBodies.find((body) => body.name === name)
+    return this.celestialBodies.find((body) => body.name === name);
+  }
+
+  getAsteroidBeltConfig() {
+    return this.asteroidBeltConfig;
   }
 }

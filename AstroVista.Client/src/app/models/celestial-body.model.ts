@@ -7,7 +7,7 @@ export interface CelestialBody {
   distanceFromSun?: number // in million km
   orbitalPeriod?: number // in Earth days
   rotationPeriod?: number // in Earth days
-  description: string
+  description: string,
 
   // For visualization
   radius: number // scaled radius for visualization
@@ -16,4 +16,16 @@ export interface CelestialBody {
   orbitalSpeed: number // orbital speed for animation
   rotationSpeed: number // rotation speed for animation
   moons?: CelestialBody[] // moons orbiting this body
+  texturePath: string // path to texture file
+
+  // Ring system
+  rings?:
+    | boolean
+    | {
+    innerRadius: number
+    outerRadius: number
+    texture?: string
+    color?: number
+    tilt?: number // in radians
+  }
 }

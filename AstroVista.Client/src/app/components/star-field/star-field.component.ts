@@ -7,8 +7,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 @Component({
   selector: 'app-star-field',
-  templateUrl: './star-field.component.html',
-  styleUrl: './star-field.component.scss'
+  templateUrl: './star-field.component.html'
 })
 export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('rendererContainer') rendererContainer!: ElementRef;
@@ -74,8 +73,11 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.renderer = new THREE.WebGLRenderer({
         antialias: true,
-        alpha: true
+        alpha: false
       });
+
+      this.renderer.setClearColor(new THREE.Color(this.backgroundColor), 1);
+
       this.renderer.setSize(width, height);
       this.renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -99,7 +101,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
       const motionBlurShader = {
         uniforms: {
           "tDiffuse": { value: null },
-          "opacity": { value: 0.85 }
+          "opacity": { value: 0.6 }
         },
         vertexShader: `
         varying vec2 vUv;

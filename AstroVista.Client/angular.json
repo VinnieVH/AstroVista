@@ -17,10 +17,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "outputPath": {
+              "base": "dist/astrovista-web",
+              "browser": ""
+            },
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/scss", "src"]
             },
-            "outputPath": "dist/astrovista-web",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

@@ -72,7 +72,7 @@ export class SolarSystemService {
     // Add planet textures
     const bodies = this.celestialBodyService.getCelestialBodies()
     bodies
-      .filter((body) => body.type === "planet" || body.type === "dwarf-planet")
+      .filter((body) => body.type === "planet")
       .forEach((planet) => {
         textureUrls.push(`textures/${planet.name.toLowerCase()}.jpg`)
 

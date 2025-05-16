@@ -1,4 +1,4 @@
-<div class="relative w-full h-screen overflow-hidden bg-[#0f1123]">
+<div class="relative w-full h-screen overflow-hidden bg-ebony-950">
   <!-- Loading Screen -->
   @if (isLoading()) {
     <app-loading-screen
@@ -9,8 +9,8 @@
 
   <div #rendererContainer class="w-full h-full"></div>
 
-  <!-- Planet Info Card -->
-  @if (isInfoVisible()) {
+  <!-- Hover Planet Info Card (only show when hovering AND not the same as focused planet) -->
+  @if (isInfoVisible() && (!focusedPlanet() || selectedBody()?.id !== focusedPlanet())) {
     <app-planet-info-card
       [body]="selectedBody()"
       [position]="infoPosition()"
@@ -31,11 +31,13 @@
     <p>Use mouse to rotate view. Scroll to zoom in/out.</p>
   </div>
 
-  <!-- Currently Focused Planet Indicator -->
+  <!-- Focused Planet Info Card (fixed position in bottom right) -->
   @if (focusedPlanet() && focusedPlanet() !== 'reset') {
-    <app-focused-planet-indicator
-      [planetName]="focusedPlanetName()"
-      (resetView)="focusOnPlanet('reset')"
-    ></app-focused-planet-indicator>
+    <app-planet-info-card
+      [body]="focusedPlanetBody()"
+      [position]="{ right: '20px', bottom: '80px', left: 'auto', top: 'auto' }"
+      [fixedPosition]="true"
+      (resetView)="handleResetView()"
+    ></app-planet-info-card>
   }
 </div>

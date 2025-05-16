@@ -14,7 +14,6 @@ import { CelestialBody } from "../../models/celestial-body.model"
 import { LoadingScreenComponent } from "./components/loading-screen/loading-screen.component"
 import { PlanetInfoCardComponent } from "./components/planet-info-card/planet-info-card.component"
 import { PlanetSelectorComponent } from "./components/planet-selector/planet-selector.component"
-import { FocusedPlanetIndicatorComponent } from "./components/focused-planet-indicator/focused-planet-indicator.component"
 import { TextureLoaderService } from "./services/texture-loader.service"
 import { SolarSystemService } from "./services/solar-system.service"
 import { RingTextureGeneratorService } from "./services/ring-texture-generator.service"
@@ -26,8 +25,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop"
   imports: [
     LoadingScreenComponent,
     PlanetInfoCardComponent,
-    PlanetSelectorComponent,
-    FocusedPlanetIndicatorComponent,
+    PlanetSelectorComponent
   ],
   providers: [TextureLoaderService, SolarSystemService, RingTextureGeneratorService],
   templateUrl: "./solar-system.component.html",
@@ -59,13 +57,12 @@ export class SolarSystemComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   })
 
-  focusedPlanetName = computed(() => {
-    const planetId = this.focusedPlanet()
-    if (!planetId) return ""
+  focusedPlanetBody = computed(() => {
+    const planetId = this.focusedPlanet();
+    if (!planetId || planetId === 'reset') return null;
 
-    const planet = this.planetList().find((p) => p.id === planetId)
-    return planet?.name || ""
-  })
+    return this.celestialBodyService.getCelestialBodyById(planetId) ?? null;
+  });
 
   constructor() {
     // Subscribe to loading state changes
@@ -102,7 +99,7 @@ export class SolarSystemComponent implements OnInit, AfterViewInit, OnDestroy {
       { id: "reset", name: "Overview", type: "star" } as CelestialBody,
       ...this.celestialBodyService
         .getCelestialBodies()
-        .filter((body) => body.type === "planet" || body.type === "star" || body.type === "dwarf-planet"),
+        .filter((body) => body.type === "planet" || body.type === "star"),
     ])
   }
 
@@ -125,5 +122,9 @@ export class SolarSystemComponent implements OnInit, AfterViewInit, OnDestroy {
   focusOnPlanet(planetId: string): void {
     this.solarSystemService.focusOnPlanet(planetId)
     this.showPlanetSelector.set(false)
+  }
+
+  handleResetView(): void {
+    this.focusOnPlanet('reset');
   }
 }

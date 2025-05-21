@@ -1,7 +1,7 @@
-import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
-import {NasaItem} from '../../models/nasa-item.model';
-import {createFeature, createReducer, on} from '@ngrx/store';
-import {ImagesAPIActions, ImagesPageActions} from './images.actions';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { NasaItem } from '../../models/nasa-item.model';
+import { createFeature, createReducer, on } from '@ngrx/store';
+import { ImagesAPIActions, ImagesPageActions } from './images.actions';
 
 export interface ImagesState extends EntityState<NasaItem> {
   loading: boolean;
@@ -11,11 +11,11 @@ export interface ImagesState extends EntityState<NasaItem> {
     currentPage: number;
     itemsPerPage: number;
     totalItems: number;
-  }
+  };
 }
 
 export const adapter: EntityAdapter<NasaItem> = createEntityAdapter<NasaItem>({
-  selectId: (item: NasaItem) => item.data[0].nasaId
+  selectId: (item: NasaItem) => item.data[0].nasaId,
 });
 
 const initialState: ImagesState = adapter.getInitialState({
@@ -25,8 +25,8 @@ const initialState: ImagesState = adapter.getInitialState({
   pagination: {
     currentPage: 1,
     itemsPerPage: 8,
-    totalItems: 0
-  }
+    totalItems: 0,
+  },
 });
 
 export const imagesFeature = createFeature({
@@ -37,7 +37,7 @@ export const imagesFeature = createFeature({
       ...state,
       loading: true,
       errorMessage: '',
-      currentSearchQuery: ''
+      currentSearchQuery: '',
     })),
     on(ImagesAPIActions.latestImagesLoadedSuccess, (state, { images }) => ({
       ...adapter.setAll(images, state),
@@ -46,18 +46,18 @@ export const imagesFeature = createFeature({
       currentSearchQuery: '',
       pagination: {
         ...state.pagination,
-        totalItems: images.length
-      }
+        totalItems: images.length,
+      },
     })),
     on(ImagesAPIActions.latestImagesLoadedFail, (state, { message }) => ({
       ...state,
       loading: false,
-      errorMessage: message
+      errorMessage: message,
     })),
     on(ImagesPageActions.searchImages, (state) => ({
       ...state,
       loading: true,
-      errorMessage: ''
+      errorMessage: '',
     })),
     on(ImagesAPIActions.searchImagesSuccess, (state, { images, query }) => ({
       ...adapter.setAll(images, state),
@@ -66,32 +66,31 @@ export const imagesFeature = createFeature({
       currentSearchQuery: query,
       pagination: {
         ...state.pagination,
-        totalItems: images.length
-      }
+        totalItems: images.length,
+      },
     })),
     on(ImagesAPIActions.searchImagesFail, (state, { message }) => ({
       ...state,
       loading: false,
-      errorMessage: message
+      errorMessage: message,
     })),
     on(ImagesPageActions.changePage, (state, { page }) => ({
       ...state,
       pagination: {
         ...state.pagination,
-        currentPage: page
-      }
+        currentPage: page,
+      },
     })),
     on(ImagesPageActions.setItemsPerPage, (state, { itemsPerPage }) => ({
       ...state,
       pagination: {
         ...state.pagination,
         itemsPerPage,
-        currentPage: 1 // Reset to first page when changing items per page
-      }
+        currentPage: 1, // Reset to first page when changing items per page
+      },
     })),
-  )
+  ),
 });
-
 
 export const { selectAll, selectEntities } = adapter.getSelectors();
 

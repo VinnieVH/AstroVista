@@ -1,20 +1,14 @@
 <div class="relative w-full h-screen overflow-hidden bg-ebony-950">
   <!-- Loading Screen -->
   @if (isLoading()) {
-    <app-loading-screen
-      [progress]="loadingProgress()"
-      [message]="loadingMessage()"
-    ></app-loading-screen>
+    <app-loading-screen [progress]="loadingProgress()" [message]="loadingMessage()"></app-loading-screen>
   }
 
   <div #rendererContainer class="w-full h-full"></div>
 
   <!-- Hover Planet Info Card (only show when hovering AND not the same as focused planet) -->
   @if (isInfoVisible() && (!focusedPlanet() || selectedBody()?.id !== focusedPlanet())) {
-    <app-planet-info-card
-      [body]="selectedBody()"
-      [position]="infoPosition()"
-    ></app-planet-info-card>
+    <app-planet-info-card [body]="selectedBody()" [position]="infoPosition()"></app-planet-info-card>
   }
 
   <!-- Planet Selector -->

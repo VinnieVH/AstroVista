@@ -1,21 +1,24 @@
-import {Component} from '@angular/core';
-import {Store} from '@ngrx/store';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import {
   selectCurrentPage,
   selectCurrentSearchQuery,
-  selectImagesLoading, selectItemsPerPage, selectPaginatedImages,
-  selectTotalItems, selectTotalPages
+  selectImagesLoading,
+  selectItemsPerPage,
+  selectPaginatedImages,
+  selectTotalItems,
+  selectTotalPages,
 } from '../../store/images/images.selectors';
-import {ImagesPageActions} from '../../store/images/images.actions';
-import {ReactiveFormsModule} from '@angular/forms';
-import {ImageGridComponent} from '../../components/image-grid/image-grid.component';
-import {SearchBarComponent} from '../../components/search-bar/search-bar.component';
-import {PaginationComponent} from '../../components/pagination/pagination.component';
+import { ImagesPageActions } from '../../store/images/images.actions';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ImageGridComponent } from '../../components/image-grid/image-grid.component';
+import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-search',
   imports: [ReactiveFormsModule, ImageGridComponent, SearchBarComponent, PaginationComponent],
-  templateUrl: './search.component.html'
+  templateUrl: './search.component.html',
 })
 export class SearchComponent {
   loading = this.store.selectSignal(selectImagesLoading);

@@ -1,7 +1,7 @@
-import { Component, Input } from "@angular/core"
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: "app-loading-screen",
+  selector: 'app-loading-screen',
   template: `
     <div class="absolute inset-0 flex flex-col items-center justify-center bg-ebony-950 z-50">
       <div class="text-center">
@@ -29,6 +29,6 @@ import { Component, Input } from "@angular/core"
   `,
 })
 export class LoadingScreenComponent {
-  @Input() progress = 0
-  @Input() message = "Loading..."
+  @Input() progress = 0;
+  @Input() message = 'Loading...';
 }

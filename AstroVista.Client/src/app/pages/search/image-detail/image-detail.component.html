@@ -2,13 +2,17 @@
   <div class="mb-6">
     <button (click)="goBack()" class="flex items-center text-ebony-300 hover:text-ebony-100 transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        <path
+          fill-rule="evenodd"
+          d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+          clip-rule="evenodd"
+        />
       </svg>
       Back to search results
     </button>
   </div>
 
-  @if(loading()) {
+  @if (loading()) {
     <div class="animate-pulse">
       <div class="h-10 w-1/3 bg-gray-700 rounded mb-6"></div>
       <div class="aspect-video w-full bg-gray-700 rounded-lg mb-8"></div>
@@ -35,18 +39,14 @@
       </div>
     </div>
   } @else {
-    @if(image(); as img) {
+    @if (image(); as img) {
       <h1 class="text-3xl font-bold text-ebony-50 mb-6">{{ img.data[0].title }}</h1>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         <!-- Main image  -->
         <div class="aspect-square lg:aspect-auto overflow-hidden rounded-lg">
-          @if(img.links && img.links.length > 0) {
-            <img
-              [src]="img.links[0].href"
-              [alt]="img.data[0].title"
-              class="w-full h-full object-cover"
-            >
+          @if (img.links && img.links.length > 0) {
+            <img [src]="img.links[0].href" [alt]="img.data[0].title" class="w-full h-full object-cover" />
           }
         </div>
 
@@ -64,7 +64,7 @@
             <dl class="grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-ebony-400">Date Created</dt>
-                <dd class="mt-1 text-sm text-ebony-200">{{ img.data[0].dateCreated | date:'longDate' }}</dd>
+                <dd class="mt-1 text-sm text-ebony-200">{{ img.data[0].dateCreated | date: 'longDate' }}</dd>
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-ebony-400">Media Type</dt>
@@ -74,7 +74,7 @@
                 <dt class="text-sm font-medium text-ebony-400">NASA ID</dt>
                 <dd class="mt-1 text-sm text-ebony-200">{{ img.data[0].nasaId }}</dd>
               </div>
-              @if(img.data[0].center) {
+              @if (img.data[0].center) {
                 <div class="sm:col-span-1">
                   <dt class="text-sm font-medium text-ebony-400">Center</dt>
                   <dd class="mt-1 text-sm text-ebony-200">{{ img.data[0].center }}</dd>
@@ -83,12 +83,14 @@
             </dl>
           </div>
 
-          @if(img.data[0].keywords && img.data[0].keywords!.length > 0) {
+          @if (img.data[0].keywords && img.data[0].keywords!.length > 0) {
             <div>
               <h2 class="text-xl font-semibold text-ebony-100 mb-2">Keywords</h2>
               <div class="flex flex-wrap gap-2">
-                @for(keyword of img.data[0].keywords; track keyword) {
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-ebony-700 text-ebony-200">
+                @for (keyword of img.data[0].keywords; track keyword) {
+                  <span
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-ebony-700 text-ebony-200"
+                  >
                     {{ keyword }}
                   </span>
                 }
@@ -96,12 +98,12 @@
             </div>
           }
 
-          @if(img.links && img.links.length > 1) {
+          @if (img.links && img.links.length > 1) {
             <div>
               <h2 class="text-xl font-semibold text-ebony-100 mb-2">Related Links</h2>
               <div class="space-y-2">
-                @for(link of img.links; track link) {
-                  @if(link.rel && link.rel !== 'preview') {
+                @for (link of img.links; track link) {
+                  @if (link.rel && link.rel !== 'preview') {
                     <a
                       [href]="link.href"
                       target="_blank"
@@ -109,8 +111,17 @@
                       class="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
                     >
                       <span>{{ link.prompt || link.rel || 'View Resource' }}</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 ml-1"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        />
                       </svg>
                     </a>
                   }

@@ -8,9 +8,8 @@ describe('StarFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StarFieldComponent]
-    })
-    .compileComponents();
+      imports: [StarFieldComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(StarFieldComponent);
     component = fixture.componentInstance;

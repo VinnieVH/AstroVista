@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  catchError,
-  exhaustMap,
-  map,
-  of,
-  tap
-} from 'rxjs';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { ImagesAPIActions, ImagesPageActions } from './images.actions';
 import { ImagesService } from '../../api/images.service';
 
@@ -14,7 +8,7 @@ import { ImagesService } from '../../api/images.service';
 export class ImagesEffects {
   constructor(
     private imagesService: ImagesService,
-    private actions$: Actions
+    private actions$: Actions,
   ) {}
   ngrxOnInitEffects() {
     return ImagesPageActions.loadLatestImages();
@@ -25,15 +19,11 @@ export class ImagesEffects {
       ofType(ImagesPageActions.loadLatestImages),
       exhaustMap(() =>
         this.imagesService.getLatest().pipe(
-          map((images) =>
-            ImagesAPIActions.latestImagesLoadedSuccess({ images })
-          ),
-          catchError((error) =>
-            of(ImagesAPIActions.latestImagesLoadedFail({ message: error }))
-          )
-        )
-      )
-    )
+          map((images) => ImagesAPIActions.latestImagesLoadedSuccess({ images })),
+          catchError((error) => of(ImagesAPIActions.latestImagesLoadedFail({ message: error }))),
+        ),
+      ),
+    ),
   );
 
   searchImages$ = createEffect(() =>
@@ -41,14 +31,10 @@ export class ImagesEffects {
       ofType(ImagesPageActions.searchImages),
       exhaustMap(({ query }) =>
         this.imagesService.searchImages(query).pipe(
-          map((images) =>
-            ImagesAPIActions.searchImagesSuccess({ images, query })
-          ),
-          catchError((error) =>
-            of(ImagesAPIActions.searchImagesFail({ message: error }))
-          )
-        )
-      )
-    )
+          map((images) => ImagesAPIActions.searchImagesSuccess({ images, query })),
+          catchError((error) => of(ImagesAPIActions.searchImagesFail({ message: error }))),
+        ),
+      ),
+    ),
   );
 }

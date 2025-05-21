@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import {TranslateModule, TranslateService} from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 interface NavLink {
   path: string;
@@ -31,13 +31,9 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
     this.checkScreenSize();
 
-    this.translateService.get([
-      'NAV.PICTURE_OF_THE_DAY'
-    ]).subscribe(
-      (res: any) => {
-        this.navLinks = [...this.navLinks, { path: '/picture-of-the-day', label: res['NAV.PICTURE_OF_THE_DAY'] }];
-      }
-    )
+    this.translateService.get(['NAV.PICTURE_OF_THE_DAY']).subscribe((res: any) => {
+      this.navLinks = [...this.navLinks, { path: '/picture-of-the-day', label: res['NAV.PICTURE_OF_THE_DAY'] }];
+    });
   }
 
   @HostListener('window:resize', ['$event'])

@@ -1,10 +1,10 @@
-@if(totalItems > 0) {
+@if (totalItems > 0) {
   <div class="mt-12 pb-8">
     <!-- Pagination info and items per page selector -->
     <div class="flex flex-col sm:flex-row justify-between items-center mb-6 text-ebony-200">
       <p class="text-sm mb-4 sm:mb-0">
-        Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
-        {{ Math.min(currentPage * itemsPerPage, totalItems) }} of {{ totalItems }} items
+        Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to {{ Math.min(currentPage * itemsPerPage, totalItems) }} of
+        {{ totalItems }} items
       </p>
 
       <div class="flex items-center space-x-3">
@@ -29,13 +29,19 @@
           (click)="onPreviousPage()"
           [disabled]="currentPage === 1"
           class="relative inline-flex items-center px-3 py-2 rounded-l-md border text-sm font-medium transition-colors"
-          [ngClass]="currentPage === 1 ?
-                'border-ebony-700 bg-ebony-800 text-ebony-400 cursor-not-allowed' :
-                'border-ebony-600 bg-ebony-800 text-ebony-200 hover:bg-ebony-700 cursor-pointer'"
+          [ngClass]="
+            currentPage === 1
+              ? 'border-ebony-700 bg-ebony-800 text-ebony-400 cursor-not-allowed'
+              : 'border-ebony-600 bg-ebony-800 text-ebony-200 hover:bg-ebony-700 cursor-pointer'
+          "
         >
           <span class="sr-only">Previous</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            <path
+              fill-rule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clip-rule="evenodd"
+            />
           </svg>
         </button>
 
@@ -44,9 +50,11 @@
           <button
             (click)="onPageChange(page)"
             class="relative inline-flex items-center px-4 py-2 border text-sm font-medium transition-colors"
-            [ngClass]="page === currentPage ?
-                  'z-10 border-ebony-500 bg-ebony-700 text-ebony-50' :
-                  'border-ebony-600 bg-ebony-800 text-ebony-200 hover:bg-ebony-700 cursor-pointer'"
+            [ngClass]="
+              page === currentPage
+                ? 'z-10 border-ebony-500 bg-ebony-700 text-ebony-50'
+                : 'border-ebony-600 bg-ebony-800 text-ebony-200 hover:bg-ebony-700 cursor-pointer'
+            "
           >
             {{ page }}
           </button>
@@ -57,13 +65,19 @@
           (click)="onNextPage()"
           [disabled]="currentPage === totalPages"
           class="relative inline-flex items-center px-3 py-2 rounded-r-md border text-sm font-medium transition-colors"
-          [ngClass]="currentPage === totalPages ?
-                'border-ebony-700 bg-ebony-800 text-ebony-400 cursor-not-allowed' :
-                'border-ebony-600 bg-ebony-800 text-ebony-200 hover:bg-ebony-700 cursor-pointer'"
+          [ngClass]="
+            currentPage === totalPages
+              ? 'border-ebony-700 bg-ebony-800 text-ebony-400 cursor-not-allowed'
+              : 'border-ebony-600 bg-ebony-800 text-ebony-200 hover:bg-ebony-700 cursor-pointer'
+          "
         >
           <span class="sr-only">Next</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            <path
+              fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd"
+            />
           </svg>
         </button>
       </nav>

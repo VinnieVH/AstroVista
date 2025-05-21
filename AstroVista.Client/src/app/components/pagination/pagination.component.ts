@@ -1,14 +1,11 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {NgClass} from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-pagination',
-  imports: [
-    NgClass,
-    ReactiveFormsModule
-  ],
-  templateUrl: './pagination.component.html'
+  imports: [NgClass, ReactiveFormsModule],
+  templateUrl: './pagination.component.html',
 })
 export class PaginationComponent {
   @Input() currentPage = 1;
@@ -23,7 +20,7 @@ export class PaginationComponent {
   itemsPerPageControl = new FormControl(this.itemsPerPage);
 
   ngOnInit() {
-    this.itemsPerPageControl.valueChanges.subscribe(value => {
+    this.itemsPerPageControl.valueChanges.subscribe((value) => {
       if (value) {
         this.itemsPerPageChange.emit(+value);
       }

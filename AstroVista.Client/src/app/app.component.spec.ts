@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have the 'astrovista-web' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('astrovista-web');
+    expect(app).toEqual('astrovista-web');
   });
 
   it('should render title', () => {

@@ -8,9 +8,8 @@ describe('ImageGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageGridComponent]
-    })
-    .compileComponents();
+      imports: [ImageGridComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ImageGridComponent);
     component = fixture.componentInstance;

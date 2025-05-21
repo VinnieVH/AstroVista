@@ -1,17 +1,10 @@
 <div class="mx-auto max-w-2xl px-4 py-5 sm:px-6 sm:py-2 lg:max-w-7xl lg:px-8">
   <h2 class="text-2xl font-bold tracking-tight text-ebony-50 my-8">Search NASA images & videos</h2>
-  <app-search-bar
-    [loading]="loading()"
-    (search)="handleSearch($event)">
-  </app-search-bar>
+  <app-search-bar [loading]="loading()" (search)="handleSearch($event)"> </app-search-bar>
 </div>
 
 <div class="mx-auto max-w-2xl px-4 py-5 sm:px-6 sm:py-2 lg:max-w-7xl lg:px-8">
-  <app-image-grid
-    [images]="images()"
-    [loading]="loading()"
-    [searchQuery]="currentSearchQuery()">
-  </app-image-grid>
+  <app-image-grid [images]="images()" [loading]="loading()" [searchQuery]="currentSearchQuery()"> </app-image-grid>
 
   <app-pagination
     [currentPage]="currentPage()"
@@ -19,6 +12,7 @@
     [totalItems]="totalItems()"
     [totalPages]="totalPages()"
     (pageChange)="handlePageChange($event)"
-    (itemsPerPageChange)="handleItemsPerPageChange($event)">
+    (itemsPerPageChange)="handleItemsPerPageChange($event)"
+  >
   </app-pagination>
 </div>

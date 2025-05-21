@@ -8,9 +8,8 @@ describe('PictureOfTheDayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PictureOfTheDayComponent]
-    })
-    .compileComponents();
+      imports: [PictureOfTheDayComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PictureOfTheDayComponent);
     component = fixture.componentInstance;

@@ -7,7 +7,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 @Component({
   selector: 'app-star-field',
-  templateUrl: './star-field.component.html'
+  templateUrl: './star-field.component.html',
 })
 export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('rendererContainer') rendererContainer!: ElementRef;
@@ -29,7 +29,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
   private renderPass!: any;
   private effectPass!: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.animate();
@@ -73,7 +73,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.renderer = new THREE.WebGLRenderer({
         antialias: true,
-        alpha: false
+        alpha: false,
       });
 
       this.renderer.setClearColor(new THREE.Color(this.backgroundColor), 1);
@@ -100,8 +100,8 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const motionBlurShader = {
         uniforms: {
-          "tDiffuse": { value: null },
-          "opacity": { value: 0.6 }
+          tDiffuse: { value: null },
+          opacity: { value: 0.6 },
         },
         vertexShader: `
         varying vec2 vUv;
@@ -118,7 +118,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
           vec4 previousFrame = texture2D(tDiffuse, vUv);
           gl_FragColor = previousFrame * opacity;
         }
-      `
+      `,
       };
 
       // Enhanced bloom settings for colored stars
@@ -126,14 +126,13 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
         new THREE.Vector2(window.innerWidth, window.innerHeight),
         this.bloomStrength,
         this.bloomRadius,
-        this.bloomThreshold
+        this.bloomThreshold,
       );
       this.composer.addPass(bloomPass);
 
       this.effectPass = new ShaderPass(motionBlurShader);
       this.effectPass.renderToScreen = true;
       this.composer.addPass(this.effectPass);
-
     } catch (error) {
       console.error('Error setting up post-processing:', error);
     }
@@ -156,7 +155,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
         const radius = 2 + Math.random() * 15;
 
         // Star positions
-        positions[i * 3] = Math.cos(angle) * radius;     // x
+        positions[i * 3] = Math.cos(angle) * radius; // x
         positions[i * 3 + 1] = Math.sin(angle) * radius; // y
         positions[i * 3 + 2] = Math.random() * 100 - 50; // z
 
@@ -165,17 +164,17 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
         if (colorVariation < 0.7) {
           // Pure white stars (70%)
-          colors[i * 3] = 1.0;     // R
+          colors[i * 3] = 1.0; // R
           colors[i * 3 + 1] = 1.0; // G
           colors[i * 3 + 2] = 1.0; // B
         } else if (colorVariation < 0.85) {
           // Slightly yellow-white stars (15%)
-          colors[i * 3] = 1.0;     // R
+          colors[i * 3] = 1.0; // R
           colors[i * 3 + 1] = 1.0; // G
           colors[i * 3 + 2] = 0.9; // B slightly reduced
         } else {
           // Golden yellow stars (15%)
-          colors[i * 3] = 1.0;     // R
+          colors[i * 3] = 1.0; // R
           colors[i * 3 + 1] = 0.9; // G slightly reduced
           colors[i * 3 + 2] = 0.6; // B more reduced
         }
@@ -194,7 +193,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Star velocities for movement
         this.velocities.push({
-          speed: 0.2 + Math.random() * 0.6
+          speed: 0.2 + Math.random() * 0.6,
         });
       }
 
@@ -232,7 +231,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
       // Uniforms for the shader
       const uniforms = {
-        pointTexture: { value: starTexture }
+        pointTexture: { value: starTexture },
       };
 
       // Create shader material
@@ -242,7 +241,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
         fragmentShader: fragmentShader,
         blending: THREE.AdditiveBlending,
         depthTest: false,
-        transparent: true
+        transparent: true,
       });
 
       // Remove previous stars if they exist
@@ -254,7 +253,6 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.stars = new THREE.Points(starsGeometry, starsMaterial);
       this.scene.add(this.stars);
-
     } catch (error) {
       console.error('Error creating stars:', error);
     }
@@ -277,14 +275,14 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
       0,
       canvas.width / 2,
       canvas.height / 2,
-      canvas.width / 2
+      canvas.width / 2,
     );
 
     // Softer gradient for white/yellow stars
     gradient.addColorStop(0.0, 'rgba(255, 255, 255, 1.0)');
     gradient.addColorStop(0.1, 'rgba(255, 255, 255, 0.9)');
     gradient.addColorStop(0.25, 'rgba(255, 253, 240, 0.8)'); // Slightly warm tint
-    gradient.addColorStop(0.5, 'rgba(255, 253, 235, 0.3)');  // Slightly warm tint
+    gradient.addColorStop(0.5, 'rgba(255, 253, 235, 0.3)'); // Slightly warm tint
     gradient.addColorStop(1.0, 'rgba(255, 255, 255, 0.0)');
 
     context.fillStyle = gradient;
@@ -324,7 +322,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
           // Fade in stars as they move toward the viewer
           if (positions[i * 3 + 2] < -30 && alphas[i] < 1.0) {
             // Gradually increase alpha as star moves closer
-            const fadeProgress = 1 - (Math.abs(positions[i * 3 + 2] + 30) / 20);
+            const fadeProgress = 1 - Math.abs(positions[i * 3 + 2] + 30) / 20;
             alphas[i] = Math.max(0, Math.min(this.easeInCubic(fadeProgress), 1.0));
           }
         }
@@ -340,7 +338,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
       console.error('Error in animation loop:', error);
       cancelAnimationFrame(this.animationFrameId!);
     }
-  }
+  };
 
   // Helper function for smoother fade-in
   private easeInCubic(t: number): number {
@@ -357,7 +355,7 @@ export class StarFieldComponent implements OnInit, AfterViewInit, OnDestroy {
       this.renderer.setSize(width, height);
       this.composer.setSize(width, height);
     }
-  }
+  };
 
   private setupResizeHandler(): void {
     window.addEventListener('resize', this.onWindowResize);

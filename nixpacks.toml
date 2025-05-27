@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ['dotnet-sdk', 'nodejs']
+
+[phases.build]
+cmds = ['dotnet restore AstroVista.API/AstroVista.API.csproj', 'dotnet publish AstroVista.API/AstroVista.API.csproj -c Release -o out']
+
+[start]
+cmd = 'cd out && dotnet AstroVista.API.dll'

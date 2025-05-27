@@ -20,7 +20,10 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/assets/scss", "src"]
             },
-            "outputPath": "dist/astrovista-web",
+            "outputPath": {
+              "base": "dist/astrovista-web",
+              "browser": ""
+            },
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [

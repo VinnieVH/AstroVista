@@ -17,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AstroVistaDb")!;
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
 
 builder.Services.AddHttpClient<INasaApodClient, NasaApodClient>();
 builder.Services.AddHttpClient<INasaImagesClient, NasaImagesClient>();
@@ -66,6 +67,7 @@ var app = builder.Build();
 app.MapUserEndpoints();
 app.MapNasaApodEndpoints();
 app.MapNasaImageEndpoints();
+app.MapPostEndpoints();
 
 app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = DateTime.UtcNow }));
 
@@ -76,22 +78,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseCors("Development");
 }
-else
-{
-    // Enable Swagger in production for Railway (Railway supports this)
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AstroVista API V1");
-        c.RoutePrefix = "swagger"; // Optional: customize the route
-    });
-    app.UseCors("Production");
-}
+// else
+// {
+//     // Enable Swagger in production for Railway (Railway supports this)
+//     app.UseSwagger();
+//     app.UseSwaggerUI(c =>
+//     {
+//         c.SwaggerEndpoint("/swagger/v1/swagger.json", "AstroVista API V1");
+//         c.RoutePrefix = "swagger"; // Optional: customize the route
+//     });
+//     app.UseCors("Production");
+// }
 
-// Railway port configuration - IMPORTANT!
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-var url = $"http://0.0.0.0:{port}";
-
-app.Urls.Add(url);
+// // Railway port configuration - IMPORTANT!
+// var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+// var url = $"http://0.0.0.0:{port}";
+//
+// app.Urls.Add(url);
 
 app.Run();

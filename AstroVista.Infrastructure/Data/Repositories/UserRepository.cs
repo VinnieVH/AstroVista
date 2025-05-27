@@ -18,4 +18,17 @@ public class UserRepository(AstroVistaDbContext dbContext) : Repository<User>(db
     {
         return await _dbContext.Users.AnyAsync(u => u.Username == username, cancellationToken);
     }
+
+    public async Task<bool> UserExistsAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        return await _dbContext.Users
+            .AnyAsync(u => u.Id == userId, cancellationToken);
+    }
+
+    public async Task<User?> GetUserWithPostsAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        return await _dbContext.Users
+            .Include(u => u.Posts.OrderByDescending(p => p.DateCreated))
+            .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
+    }
 }

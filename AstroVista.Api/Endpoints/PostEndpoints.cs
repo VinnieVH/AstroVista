@@ -1,6 +1,7 @@
 using AstroVista.API.Endpoints.Common;
 using AstroVista.Application.Posts.Commands;
 using AstroVista.Application.Posts.Queries;
+using AstroVista.Application.Posts.Requests;
 using AstroVista.Application.Posts.Responses;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +47,13 @@ public static class PostEndpoints
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .ProducesProblem(StatusCodes.Status500InternalServerError);
+
+        group.MapPut("/user/{userId:guid}/bulk", BulkUpdatePosts)
+            .WithName("BulkUpdatePosts")
+            .Produces<BulkUpdatePostsResponse>()
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
+
 
         return app;
     }
@@ -194,6 +202,46 @@ public static class PostEndpoints
             return Results.Problem(
                 ex.Message,
                 title: "An error occurred while getting user posts",
+                statusCode: 500);
+        }
+    }
+
+    private static async Task<IResult> BulkUpdatePosts(
+        Guid userId,
+        [FromBody] IEnumerable<UpdatePostRequest> request,
+        IMessageBus bus,
+        CancellationToken cancellationToken)
+    {
+        try
+        {
+            if (userId == Guid.Empty)
+                return Results.BadRequest("Invalid user ID");
+
+            var command = new BulkUpdatePostsCommand(userId, request);
+
+            var result = await bus.InvokeAsync<BulkUpdatePostsResponse>(command, cancellationToken);
+            return Results.Ok(result);
+        }
+        catch (ValidationException ex)
+        {
+            var errors = ex.Errors
+                .GroupBy(e => e.PropertyName)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Select(e => e.ErrorMessage).ToArray()
+                );
+
+            return Results.BadRequest(new { errors });
+        }
+        catch (ArgumentException ex)
+        {
+            return Results.BadRequest(new { error = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(
+                ex.InnerException?.Message ?? ex.Message,
+                title: "An error occurred while bulk updating posts",
                 statusCode: 500);
         }
     }
